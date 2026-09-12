@@ -857,94 +857,226 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   13. SPEAKERS
+   13. SPEAKERS (Premium Slider)
    ========================================================================== */
 .speakers {
     background: var(--black-deep);
     overflow: hidden;
+    padding: var(--sp-24) 0;
 }
-.speakers__carousel {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--sp-6);
+.speakers__header {
+    margin-bottom: var(--sp-12);
+}
+.speakers__title {
+    font-size: var(--text-4xl);
+    margin: var(--sp-2) auto var(--sp-4);
+}
+.speakers__subtitle {
+    font-size: var(--text-lg);
+    color: var(--gray-light);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* Speaker Card */
-.speaker-card {
-    display: flex;
-    flex-direction: column;
-    background: var(--black-soft);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform var(--t-normal), border-color var(--t-fast);
+/* Slider */
+.speakers-slider {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
 }
-.speaker-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(214, 170, 67, 0.3);
-}
-.speaker-card__img-wrapper {
-    width: 100%;
-    aspect-ratio: 4 / 5;
+.speakers-slider__track-container {
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(214, 170, 67, 0.15);
+    background: linear-gradient(180deg, rgba(20,20,20,0.8) 0%, rgba(10,10,10,0.9) 100%);
+    border-radius: 4px;
 }
-.speaker-card__img {
+.speakers-slider__track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Slide Item */
+.speakers-slide {
+    min-width: 100%;
+    opacity: 0.3;
+    transition: opacity 0.6s ease;
+    display: flex;
+}
+.speakers-slide.active {
+    opacity: 1;
+}
+.speakers-slide__inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image */
+.speakers-slide__image {
+    width: 100%;
+    position: relative;
+    background: var(--black);
+}
+.speakers-slide__photo {
     width: 100%;
     height: 100%;
+    min-height: 400px;
     background-image: url('hero/speakers.png');
     background-size: 300% 100%;
     background-repeat: no-repeat;
     filter: contrast(1.05) saturate(0.9);
-    transition: filter var(--t-slow), transform var(--t-slow);
 }
-.speaker-card:hover .speaker-card__img {
-    filter: contrast(1.05) saturate(1);
-    transform: scale(1.03);
-}
+.speakers-slide__photo--lasaro { background-position: left center; }
+.speakers-slide__photo--lilian { background-position: center center; }
+.speakers-slide__photo--atila { background-position: right center; }
 
-/* Background positioning for the sliced sprite */
-.speaker-card__img--lasaro {
-    background-position: left center;
-}
-.speaker-card__img--lilian {
-    background-position: center center;
-}
-.speaker-card__img--atila {
-    background-position: right center;
-}
-
-.speaker-card__content {
-    padding: var(--sp-6);
-    flex-grow: 1;
+/* Content */
+.speakers-slide__content {
+    padding: var(--sp-8) var(--sp-6);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    background: var(--black-soft);
 }
-.speaker-card__label {
+.speakers-slide__category {
     display: inline-block;
     font-family: var(--font-heading);
     font-size: var(--text-xs);
     color: var(--gold);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: var(--sp-3);
-    padding: var(--sp-1) var(--sp-3);
-    background: rgba(214, 170, 67, 0.1);
-    border-radius: 4px;
-    align-self: flex-start;
+    margin-bottom: var(--sp-4);
 }
-.speaker-card__name {
-    font-size: var(--text-2xl);
-    margin-bottom: var(--sp-2);
-    text-transform: none;
+.speakers-slide__name {
+    font-size: var(--text-4xl);
     color: var(--white);
+    margin-bottom: var(--sp-4);
+    text-transform: none;
 }
-.speaker-card__desc {
-    font-size: var(--text-sm);
-    color: var(--gray-light);
+.speakers-slide__desc {
+    font-size: var(--text-lg);
+    color: var(--white-off);
+    line-height: 1.6;
     margin: 0;
-    line-height: 1.5;
+    max-width: 500px;
+}
+
+/* Controls */
+.speakers-slider__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--sp-8);
+    gap: var(--sp-6);
+}
+.speakers-slider__progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+}
+.speakers-slider__counter {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    color: var(--gold);
+    letter-spacing: 0.1em;
+}
+.speakers-slider__progress-bar {
+    width: 120px;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+}
+.speakers-slider__progress-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: var(--gold);
+    width: 33.333%;
+    transition: width 0.4s ease;
+}
+
+/* Navigation Names */
+.speakers-slider__names {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-3);
+    align-items: center;
+}
+.speakers-slider__name-btn {
+    background: none;
+    border: none;
+    color: var(--gray);
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    padding: var(--sp-2);
+    cursor: pointer;
+    transition: color var(--t-fast);
+}
+.speakers-slider__name-btn:hover { color: var(--white-off); }
+.speakers-slider__name-btn.active {
+    color: var(--gold);
+}
+.speakers-slider__name-sep {
+    color: rgba(255,255,255,0.1);
+    font-size: var(--text-xs);
+}
+
+/* Arrows */
+.speakers-slider__arrows {
+    display: flex;
+    gap: var(--sp-4);
+}
+.speakers-slider__arrow {
+    background: none;
+    border: 1px solid rgba(214,170,67,0.3);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    cursor: pointer;
+    transition: all var(--t-fast);
+}
+.speakers-slider__arrow:hover {
+    background: rgba(214,170,67,0.1);
+    border-color: var(--gold);
+}
+
+/* Desktop overrides */
+@media (min-width: 992px) {
+    .speakers-slide__inner {
+        flex-direction: row;
+        min-height: 500px;
+    }
+    .speakers-slide__image {
+        width: 48%;
+        flex-shrink: 0;
+    }
+    .speakers-slide__photo {
+        position: absolute;
+        inset: 0;
+        min-height: auto;
+    }
+    .speakers-slide__content {
+        width: 52%;
+        padding: var(--sp-12) var(--sp-12);
+        background: transparent;
+    }
+    .speakers-slider__controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: var(--sp-6);
+        border-top: 1px solid rgba(255,255,255,0.05);
+        padding-top: var(--sp-6);
+    }
+    .speakers-slider__arrows {
+        gap: var(--sp-3);
+    }
 }
 
 /* ==========================================================================
@@ -2144,25 +2276,6 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 320px;
         border-radius: 14px;
     }
-    
-    /* Speakers Mobile Carousel */
-    .speakers__carousel {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: var(--sp-4);
-        padding-bottom: var(--sp-6);
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .speakers__carousel::-webkit-scrollbar {
-        display: none;
-    }
-    .speaker-card {
-        min-width: 85%;
-        scroll-snap-align: center;
-        flex-shrink: 0;
-    }
 }
 
 /* ==========================================================================
@@ -2194,12 +2307,6 @@ h1, h2, h3, h4, h5, h6 {
     .solution__grid {
         grid-template-columns: 1fr 1fr;
         column-gap: var(--sp-10);
-    }
-
-    /* Speakers Desktop */
-    .speakers__carousel {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--sp-10);
     }
 
     /* Timeline Desktop */

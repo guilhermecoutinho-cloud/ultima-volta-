@@ -338,42 +338,93 @@
         <!-- ========== 8. PALESTRANTES ========== -->
         <section class="speakers section" id="palestrantes">
             <div class="container">
-                <div class="speakers__carousel">
-                    <!-- Speaker 1: Lasaro -->
-                    <div class="speaker-card reveal" data-delay="100">
-                        <div class="speaker-card__img-wrapper">
-                            <div class="speaker-card__img speaker-card__img--lasaro"></div>
-                        </div>
-                        <div class="speaker-card__content">
-                            <span class="speaker-card__label">ACONSELHAMENTO + PODCAST</span>
-                            <h3 class="speaker-card__name">Lasaro do Carmo JR.</h3>
-                            <p class="speaker-card__desc">Liderança, riscos e as decisões que o empresário precisa tomar quando o cenário muda.</p>
+                <div class="speakers__header text-center reveal">
+                    <span class="eyebrow">LINE-UP DA EXPERIÊNCIA</span>
+                    <h2 class="speakers__title">QUEM CONDUZ A ÚLTIMA VOLTA</h2>
+                    <p class="speakers__subtitle">Três visões complementares para ajudar empresários a decidir, reagir e crescer ainda em 2026.</p>
+                </div>
+
+                <div class="speakers-slider reveal" data-delay="150" id="speakersSlider">
+                    
+                    <!-- Slider Container -->
+                    <div class="speakers-slider__track-container">
+                        <div class="speakers-slider__track" id="speakersTrack">
+                            
+                            <!-- Slide 1: Lasaro -->
+                            <div class="speakers-slide active" data-index="0">
+                                <div class="speakers-slide__inner">
+                                    <div class="speakers-slide__image">
+                                        <div class="speakers-slide__photo speakers-slide__photo--lasaro" role="img" aria-label="Foto de Lázaro do Carmo Jr."></div>
+                                    </div>
+                                    <div class="speakers-slide__content">
+                                        <span class="speakers-slide__category">ACONSELHAMENTO + PODCAST</span>
+                                        <h3 class="speakers-slide__name">Lázaro do Carmo Jr.</h3>
+                                        <p class="speakers-slide__desc">Liderança, riscos e as decisões que o empresário precisa tomar quando o cenário muda.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 2: Lilian -->
+                            <div class="speakers-slide" data-index="1">
+                                <div class="speakers-slide__inner">
+                                    <div class="speakers-slide__image">
+                                        <div class="speakers-slide__photo speakers-slide__photo--lilian" role="img" aria-label="Foto de Lilian Carmo"></div>
+                                    </div>
+                                    <div class="speakers-slide__content">
+                                        <span class="speakers-slide__category">CONTEÚDO DE ALTO VALOR</span>
+                                        <h3 class="speakers-slide__name">Lilian Carmo</h3>
+                                        <p class="speakers-slide__desc">Estratégia, gestão e alavancas para transformar os últimos meses de 2026.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 3: Atila -->
+                            <div class="speakers-slide" data-index="2">
+                                <div class="speakers-slide__inner">
+                                    <div class="speakers-slide__image">
+                                        <div class="speakers-slide__photo speakers-slide__photo--atila" role="img" aria-label="Foto de Átila Abreu"></div>
+                                    </div>
+                                    <div class="speakers-slide__content">
+                                        <span class="speakers-slide__category">PALESTRA + PODCAST</span>
+                                        <h3 class="speakers-slide__name">Átila Abreu</h3>
+                                        <p class="speakers-slide__desc">Decisão, velocidade, foco e execução para competir sob pressão.</p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
-                    <!-- Speaker 2: Lilian -->
-                    <div class="speaker-card reveal" data-delay="250">
-                        <div class="speaker-card__img-wrapper">
-                            <div class="speaker-card__img speaker-card__img--lilian"></div>
+                    <!-- Slider Controls -->
+                    <div class="speakers-slider__controls">
+                        <!-- Progress & Counter -->
+                        <div class="speakers-slider__progress-wrapper">
+                            <span class="speakers-slider__counter" id="speakersCounter">01 / 03</span>
+                            <div class="speakers-slider__progress-bar">
+                                <div class="speakers-slider__progress-fill" id="speakersProgress"></div>
+                            </div>
                         </div>
-                        <div class="speaker-card__content">
-                            <span class="speaker-card__label">CONTEÚDO DE ALTO VALOR</span>
-                            <h3 class="speaker-card__name">Lilian Carmo</h3>
-                            <p class="speaker-card__desc">Estratégia, gestão e alavancas para transformar os últimos meses de 2026.</p>
+
+                        <!-- Names Navigation -->
+                        <nav class="speakers-slider__names" aria-label="Navegação dos palestrantes">
+                            <button class="speakers-slider__name-btn active" data-goto="0">LÁZARO DO CARMO JR.</button>
+                            <span class="speakers-slider__name-sep">—</span>
+                            <button class="speakers-slider__name-btn" data-goto="1">LILIAN CARMO</button>
+                            <span class="speakers-slider__name-sep">—</span>
+                            <button class="speakers-slider__name-btn" data-goto="2">ÁTILA ABREU</button>
+                        </nav>
+
+                        <!-- Arrows -->
+                        <div class="speakers-slider__arrows">
+                            <button class="speakers-slider__arrow" id="speakersPrev" aria-label="Palestrante anterior">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            </button>
+                            <button class="speakers-slider__arrow" id="speakersNext" aria-label="Próximo palestrante">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Speaker 3: Atila -->
-                    <div class="speaker-card reveal" data-delay="400">
-                        <div class="speaker-card__img-wrapper">
-                            <div class="speaker-card__img speaker-card__img--atila"></div>
-                        </div>
-                        <div class="speaker-card__content">
-                            <span class="speaker-card__label">PALESTRA + PODCAST</span>
-                            <h3 class="speaker-card__name">Atila Abreu</h3>
-                            <p class="speaker-card__desc">Decisão, velocidade, foco e execução para competir sob pressão.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
