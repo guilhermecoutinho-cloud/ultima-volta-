@@ -344,10 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isAnimating = true;
             currentIndex = index;
 
-            // Move track
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-            // Active classes for slides
+            // Active classes for slides (CSS handles the specific animations)
             slides.forEach((s, i) => {
                 s.classList.toggle('active', i === currentIndex);
             });
@@ -366,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 isAnimating = false;
-            }, 600); // matches CSS transition time
+            }, 800); // matches CSS transition time
         }
 
         // Navigation Clicks
