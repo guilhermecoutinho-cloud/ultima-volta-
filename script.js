@@ -408,4 +408,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     });
 
+    // 6. KART VIDEO CUSTOM PLAYER
+    const kartVideo = document.getElementById('kartVideo');
+    const kartVideoOverlay = document.getElementById('kartVideoOverlay');
+    const kartVideoWrapper = document.querySelector('.kart__video-wrapper');
+
+    if (kartVideo && kartVideoOverlay && kartVideoWrapper) {
+        function togglePlay() {
+            if (kartVideo.paused) {
+                kartVideo.play();
+                kartVideoOverlay.style.opacity = '0';
+                kartVideoOverlay.style.pointerEvents = 'none';
+                kartVideo.setAttribute('controls', 'true'); // Allow native controls once playing so user has full control (volume, fullscreen)
+            } else {
+                kartVideo.pause();
+                kartVideoOverlay.style.opacity = '1';
+                kartVideoOverlay.style.pointerEvents = 'auto';
+                kartVideo.removeAttribute('controls');
+            }
+        }
+        
+        kartVideoOverlay.addEventListener('click', togglePlay);
+        kartVideo.addEventListener('click', togglePlay);
+        kartVideo.addEventListener('pause', () => {
+            kartVideoOverlay.style.opacity = '1';
+            kartVideoOverlay.style.pointerEvents = 'auto';
+            kartVideo.removeAttribute('controls');
+        });
+        kartVideo.addEventListener('play', () => {
+            kartVideoOverlay.style.opacity = '0';
+            kartVideoOverlay.style.pointerEvents = 'none';
+            kartVideo.setAttribute('controls', 'true');
+        });
+    }
+
 }); // end DOMContentLoaded

@@ -1380,6 +1380,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     color: var(--gray);
     background: radial-gradient(circle at center, var(--graphite-2) 0%, var(--black-deep) 100%);
+    transition: opacity var(--t-fast) ease;
 }
 .kart__video-play-btn {
     width: 72px;

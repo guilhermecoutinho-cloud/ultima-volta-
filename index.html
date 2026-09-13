@@ -582,40 +582,23 @@
                 <!-- Vídeo da Experiência Kart Crazy (Formato Vertical 9:16) -->
                 <div class="kart__video kart__video--vertical reveal" data-delay="300">
                     <div class="kart__video-wrapper kart__video-wrapper--vertical">
-                        <!-- OPÇÃO 1: Vídeo local vertical (MP4 / 9:16) — descomente e insira o caminho do arquivo -->
-                        <!--
-                        <video
-                            controls
+                        <video 
+                            id="kartVideo"
                             playsinline
                             preload="metadata"
-                            poster="hero/kart-vertical-poster.jpg"
+                            style="cursor: pointer;"
                         >
-                            <source src="videos/kart-crazy-vertical.mp4" type="video/mp4">
+                            <source src="id/Ambição%20&%20Bandeiras.mp4" type="video/mp4">
                             Seu navegador não suporta vídeo HTML5.
                         </video>
-                        -->
 
-                        <!-- OPÇÃO 2: Embed YouTube Shorts / Reels / Vimeo — descomente e substitua a URL -->
-                        <!--
-                        <iframe
-                            src="https://www.youtube.com/embed/SEU_VIDEO_ID"
-                            title="Experiência Kart Crazy"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                        ></iframe>
-                        -->
-
-                        <!-- Placeholder visual vertical (9:16) -->
-                        <div class="kart__video-placeholder">
+                        <!-- Custom Play Overlay -->
+                        <div class="kart__video-placeholder" id="kartVideoOverlay" style="cursor: pointer; background: rgba(0,0,0,0.4);">
                             <div class="kart__video-play-btn" aria-hidden="true">
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                                     <polygon points="6 3 20 12 6 21 6 3"/>
                                 </svg>
                             </div>
-                            <span class="kart__video-tag">VÍDEO VERTICAL (9:16)</span>
-                            <p>Insira o vídeo da experiência aqui</p>
-                            <span class="kart__video-hint">Perfeito para vídeos de celular, Reels, Shorts ou Stories (1080x1920)</span>
                         </div>
                     </div>
                 </div>
