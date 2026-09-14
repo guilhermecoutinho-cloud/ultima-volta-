@@ -1164,17 +1164,18 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Mobile ───────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
     .spk-carousel__header {
-        padding: 32px 20px 60px; /* Reduce side padding so title fits on mobile */
+        padding: 40px 20px 60px; /* Better top padding */
     }
     .speakers__title {
-        font-size: var(--text-3xl); /* Slightly smaller title on mobile */
+        font-size: var(--text-3xl);
     }
     .spk-slide {
-        flex: 0 0 calc(100vw - 32px);
-        min-height: 600px;
+        flex: 0 0 100vw; /* Take full viewport width, no side peeks */
+        min-height: 640px; /* Ensure sufficient height for the image and text */
         flex-direction: column;
-        justify-content: flex-end; /* Correct flex property to push body to the bottom */
+        justify-content: flex-end;
         align-items: stretch;
+        padding-bottom: 20px; /* Extra padding to separate text from controls */
     }
     .spk-slide__figure {
         position: absolute;
@@ -1185,43 +1186,98 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center 25%;
+        object-position: center 20%; /* Keep face in view */
     }
     .spk-slide__overlay--left { display: none; }
     .spk-slide__overlay--right { width: 0; background: transparent; }
+    
+    /* Make the bottom shadow overlay stronger to ensure text is highly readable */
+    .spk-slide__figure-shadow {
+        background: linear-gradient(to top,
+            rgba(5,5,5,0.98) 0%,
+            rgba(5,5,5,0.90) 30%,
+            rgba(5,5,5,0.40) 60%,
+            rgba(5,5,5,0.0) 100%
+        ) !important;
+    }
+
     .spk-slide__body {
         width: 100%;
         margin-left: 0;
-        padding: var(--sp-12) var(--sp-6) var(--sp-8);
-        background: linear-gradient(to top,
-            rgba(5,5,5,0.97) 0%,
-            rgba(5,5,5,0.85) 50%,
-            rgba(5,5,5,0.0)  100%
-        );
+        padding: var(--sp-8) var(--sp-6) var(--sp-6);
+        background: transparent; /* Background handled by figure-shadow */
         transform: translateY(12px);
         transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+        text-align: left;
     }
     .spk-slide--active .spk-slide__body {
         opacity: 1;
         transform: translateY(0);
     }
-    .spk-slide__name {
-        font-size: clamp(1.6rem, 6vw, 2.4rem);
+    .spk-slide__category {
+        margin-bottom: var(--sp-2);
     }
+    .spk-slide__name {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        line-height: 1.1;
+        margin-bottom: var(--sp-3);
+    }
+    .spk-slide__desc {
+        font-size: 1.05rem;
+        line-height: 1.5;
+        max-width: 90%;
+    }
+    
+    /* Navigation */
     .spk-carousel__controls {
         flex-direction: column;
-        align-items: center;
-        gap: var(--sp-5);
-        padding: var(--sp-6) var(--sp-4);
-    }
-    .spk-carousel__left-controls {
-        order: 2;
+        align-items: stretch;
+        gap: var(--sp-6);
+        padding: var(--sp-6) var(--sp-4) var(--sp-8);
+        background: var(--black-deep);
     }
     .spk-carousel__names {
         order: 1;
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: var(--sp-4);
+        padding-bottom: var(--sp-2);
+        /* Hide scrollbar */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .spk-carousel__names::-webkit-scrollbar {
+        display: none;
+    }
+    .spk-carousel__name-sep {
+        display: none; /* Hide separators on mobile */
+    }
+    .spk-carousel__name-btn {
+        font-size: var(--text-sm);
+        padding: 8px 12px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 4px;
+        opacity: 0.6;
+    }
+    .spk-carousel__name-btn.active {
+        opacity: 1;
+        background: rgba(214,170,67,0.15);
+    }
+    
+    .spk-carousel__left-controls {
+        order: 2;
+        justify-content: space-between;
+        width: 100%;
     }
     .spk-carousel__arrows {
         order: 3;
+        align-self: center;
+        gap: var(--sp-6);
+    }
+    .spk-carousel__arrow {
+        width: 52px; /* Larger tap targets */
+        height: 52px;
     }
 }
 
@@ -2401,24 +2457,42 @@ h1, h2, h3, h4, h5, h6 {
         object-fit: contain;
     }
     .hero {
-        min-height: 820px;
-        padding-top: 110px;
-        padding-bottom: var(--sp-12);
-        background-position: 70% center;
+        min-height: 100vh;
+        padding-top: 130px; /* More breathing room at the top */
+        padding-bottom: var(--sp-16);
+        background-position: 75% center; /* Adjust image framing for mobile */
+        justify-content: flex-start; /* Flow naturally from top instead of centering awkwardly */
     }
     .hero__container {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
     .hero__overlay {
         background: linear-gradient(180deg, 
-            rgba(5,5,5,0.94) 0%, 
-            rgba(5,5,5,0.85) 45%, 
-            rgba(5,5,5,0.95) 100%
+            rgba(5,5,5,0.98) 0%,   /* Very dark at top for text readability */
+            rgba(5,5,5,0.88) 45%,  /* Still dark over text */
+            rgba(5,5,5,0.50) 75%,  /* Fade to show image below */
+            rgba(5,5,5,0.95) 100%  /* Dark again at bottom to blend */
         );
     }
     .hero__title {
-        font-size: clamp(42px, 11vw, 58px);
+        font-size: clamp(48px, 12vw, 64px); /* Slightly more impact but fits well */
+        line-height: 0.92;
+        margin-bottom: var(--sp-6);
+    }
+    .hero__desc {
+        font-size: 1rem;
+        margin-bottom: var(--sp-8);
+    }
+    .hero__info {
+        gap: var(--sp-4);
+        padding: var(--sp-6) 0;
+        margin-bottom: var(--sp-8);
+    }
+    .hero__cta {
+        padding: var(--sp-5) var(--sp-4);
+        font-size: 0.95rem; /* Make button text readable */
+        line-height: 1.3;
     }
     .ticket-card {
         padding: var(--sp-8) var(--sp-5);
@@ -2435,6 +2509,54 @@ h1, h2, h3, h4, h5, h6 {
     .kart__video-wrapper {
         max-width: 320px;
         border-radius: 14px;
+    }
+    
+    /* Final CTA Mobile Refactor */
+    .final-cta {
+        padding: var(--sp-24) 20px; /* Comfortable padding */
+    }
+    .final-cta__bg {
+        /* Much darker overlay on mobile so text doesn't compete with the helmet image */
+        background:
+            linear-gradient(to bottom, rgba(5,5,5,0.95), rgba(5,5,5,0.85), rgba(5,5,5,0.95)),
+            url('id/pista%20com%20capacete.jpg') center/cover no-repeat;
+    }
+    .final-cta__inner {
+        gap: var(--sp-8); /* Much better vertical rhythm */
+    }
+    .final-cta__pre {
+        font-size: var(--text-base);
+    }
+    .final-cta__headline {
+        font-size: var(--text-2xl); /* Prevent huge text overlapping */
+        line-height: 1.3;
+    }
+    .final-cta__body {
+        font-size: 1.05rem;
+        padding: 0 10px;
+    }
+    .final-cta__event {
+        gap: var(--sp-2);
+        margin: var(--sp-6) 0;
+    }
+    .final-cta__estamos {
+        font-size: var(--text-lg);
+    }
+    .final-cta__volta {
+        font-size: clamp(32px, 9vw, 42px); /* Scale gracefully on small screens */
+    }
+    .final-cta .btn {
+        width: 100%;
+        max-width: 100%;
+        padding: var(--sp-5) var(--sp-4);
+        font-size: 0.95rem;
+        line-height: 1.4;
+        white-space: normal; /* Allow long button text to wrap cleanly */
+    }
+    .final-cta__micro {
+        font-size: 0.85rem;
+        margin-top: var(--sp-4);
+        line-height: 1.5;
     }
 }
 
