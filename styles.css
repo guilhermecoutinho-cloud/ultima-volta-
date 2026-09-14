@@ -329,7 +329,7 @@ h2,
     width: 100%;
     min-height: 900px;
     background-color: var(--black-deep);
-    background-image: url('hero/hero-desktop.png');
+    background-image: url('hero/hero-desktop.webp');
     background-size: cover;
     background-position: right center; /* Focus on the right side for the speakers */
     background-repeat: no-repeat;
@@ -556,7 +556,7 @@ h2,
 .track-band {
     position: relative;
     background-color: var(--black-deep);
-    background-image: url('hero/track-bg.png');
+    background-image: url('hero/track-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -578,7 +578,7 @@ h2,
 }
 
 .track-band--pitstop {
-    background-image: url('hero/pitstop-bg.png');
+    background-image: url('hero/pitstop-bg.webp');
 }
 
 .pillars {
@@ -671,7 +671,7 @@ h2,
 .pains {
     position: relative;
     background-color: var(--black-deep);
-    background-image: url('hero/grandstand-bg.png');
+    background-image: url('hero/grandstand-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -768,7 +768,7 @@ h2,
 .solution {
     position: relative;
     background-color: var(--black-deep);
-    background-image: url('hero/pitlane-bg.png');
+    background-image: url('hero/pitlane-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -972,7 +972,7 @@ h2,
 .schedule {
     position: relative;
     background-color: var(--black-deep);
-    background-image: url('hero/schedule-bg.png'), url('hero/schedule-bg.png');
+    background-image: url('hero/schedule-bg.webp'), url('hero/schedule-bg.webp');
     background-position: center top, center bottom;
     background-size: 100% auto, 100% auto;
     background-repeat: no-repeat, no-repeat;
@@ -1217,7 +1217,7 @@ h2,
     position: relative;
     overflow: hidden;
     background-color: var(--black-deep);
-    background-image: url('hero/kart-bg.png');
+    background-image: url('hero/kart-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1398,7 +1398,7 @@ h2,
 .value {
     position: relative;
     background-color: var(--black-deep);
-    background-image: url('hero/kart-bg.png');
+    background-image: url('hero/kart-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1535,7 +1535,7 @@ h2,
     position: relative;
     overflow: hidden;
     background-color: var(--black-deep);
-    background-image: url('hero/tickets-bg.png');
+    background-image: url('hero/tickets-bg.webp');
     background-size: cover;
     background-position: center right;
     background-repeat: no-repeat;
@@ -1952,7 +1952,7 @@ h2,
 .qualification {
     position: relative;
     background-color: var(--black-deep);
-    background-image: url('hero/qualification-bg.png');
+    background-image: url('hero/qualification-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2145,7 +2145,7 @@ h2,
     position: relative;
     overflow: hidden;
     background-color: var(--black-deep);
-    background-image: url('hero/final-cta-bg.png');
+    background-image: url('hero/final-cta-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2210,7 +2210,7 @@ h2,
 .footer {
     position: relative;
     background-color: var(--black-deep);
-    background-image: url('hero/footer-bg.png');
+    background-image: url('hero/footer-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2352,14 +2352,14 @@ h2,
    ========================================================================== */
 @media (max-width: 767px) {
     .schedule {
-        background-image: url('hero/schedule-bg-mobile.png'), url('hero/schedule-bg-mobile.png');
+        background-image: url('hero/schedule-bg-mobile.webp'), url('hero/schedule-bg-mobile.webp');
     }
 
     .hero {
         min-height: 100vh;
         padding-top: var(--sp-8);
         padding-bottom: var(--sp-16);
-        background-image: url('hero/hero-mobile.png');
+        background-image: url('hero/hero-mobile.webp');
         background-position: center bottom; /* Mantém a bandeira quadriculada visível no rodapé */
         justify-content: flex-start;
     }
@@ -2410,13 +2410,13 @@ h2,
         line-height: 1.3;
     }
     .tickets-section {
-        background-image: url('hero/tickets-bg-mobile.png');
+        background-image: url('hero/tickets-bg-mobile.webp');
     }
     .qualification {
-        background-image: url('hero/qualification-bg-mobile.png');
+        background-image: url('hero/qualification-bg-mobile.webp');
     }
     .footer {
-        background-image: url('hero/footer-bg-mobile.png');
+        background-image: url('hero/footer-bg-mobile.webp');
     }
     .footer::before {
         background: linear-gradient(180deg,
@@ -2451,7 +2451,7 @@ h2,
     }
     .kart,
     .value {
-        background-image: url('hero/kart-bg-mobile.png');
+        background-image: url('hero/kart-bg-mobile.webp');
     }
     .kart::before {
         background: linear-gradient(180deg,
@@ -2470,7 +2470,7 @@ h2,
         padding: var(--sp-24) 20px; /* Comfortable padding */
     }
     .final-cta {
-        background-image: url('hero/final-cta-bg-mobile.png');
+        background-image: url('hero/final-cta-bg-mobile.webp');
     }
     .final-cta__bg {
         /* Overlay mais escuro no mobile para o texto não competir com a foto */
