@@ -400,9 +400,9 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     min-height: 900px;
     background-color: var(--black-deep);
-    background-image: url('hero/hero.png');
+    background-image: url('hero/hero-desktop.jpg');
     background-size: cover;
-    background-position: 60% center;
+    background-position: right center; /* Focus on the right side for the speakers */
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
@@ -418,10 +418,9 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     inset: 0;
     background: linear-gradient(90deg,
-        rgba(5,5,5,0.96) 0%,
-        rgba(5,5,5,0.85) 28%,
-        rgba(5,5,5,0.35) 52%,
-        rgba(5,5,5,0.05) 72%,
+        rgba(5,5,5,0.98) 0%,
+        rgba(5,5,5,0.90) 30%,
+        rgba(5,5,5,0.40) 55%,
         transparent 100%
     );
     z-index: 1;
@@ -452,42 +451,41 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box;
 }
 
-/* Text block limited to max 580px (approx 42% of hero) */
+/* Text block limited to max 620px */
 .hero__content {
-    max-width: 580px;
+    max-width: 620px;
     width: 100%;
     position: relative;
     z-index: 3;
 }
 
-/* Eyebrow badge */
-.hero__content .eyebrow {
-    margin-bottom: var(--sp-4);
-    display: inline-block;
+/* Top brand block */
+.hero__top-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-6);
+}
+.hero__top-brand .eyebrow {
+    margin-bottom: 0;
+}
+.hero__logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
 }
 
-/* Headline */
+/* Headline Image */
 .hero__title {
-    font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
-    font-size: clamp(56px, 5.8vw, 104px);
-    font-weight: 800;
-    line-height: 0.95;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    margin: var(--sp-2) 0 var(--sp-6);
+    margin: 0 0 var(--sp-6);
 }
-
-.hero__title-line {
+.hero__title-img {
+    width: 100%;
+    max-width: 580px;
+    height: auto;
     display: block;
-}
-
-.hero__title-line--1 {
-    color: var(--white);
-    white-space: nowrap;
-}
-
-.hero__title-line--2 {
-    color: var(--white);
+    filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5));
 }
 
 /* Supporting subheadline */
@@ -519,6 +517,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero__info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+}
+
+.hero__info-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.hero__info-text {
     font-family: var(--font-heading);
     font-size: var(--text-sm);
     color: var(--white);
@@ -526,7 +537,7 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: uppercase;
 }
 
-.hero__info-item span {
+.hero__info-text span {
     display: block;
     font-family: var(--font-body);
     font-size: var(--text-xs);
@@ -535,7 +546,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.03em;
 }
 
-.hero__info-item .info-note {
+.hero__info-text .info-note {
     color: var(--gold);
     font-style: italic;
     font-size: var(--text-xs);
@@ -2458,10 +2469,11 @@ h1, h2, h3, h4, h5, h6 {
     }
     .hero {
         min-height: 100vh;
-        padding-top: 130px; /* More breathing room at the top */
+        padding-top: 130px;
         padding-bottom: var(--sp-16);
-        background-position: 75% center; /* Adjust image framing for mobile */
-        justify-content: flex-start; /* Flow naturally from top instead of centering awkwardly */
+        background-image: url('hero/hero-mobile.jpg');
+        background-position: center bottom; /* The faces are well placed, pin bottom to ensure we see them */
+        justify-content: flex-start;
     }
     .hero__container {
         padding-left: 24px;
@@ -2469,10 +2481,10 @@ h1, h2, h3, h4, h5, h6 {
     }
     .hero__overlay {
         background: linear-gradient(180deg, 
-            rgba(5,5,5,0.98) 0%,   /* Very dark at top for text readability */
-            rgba(5,5,5,0.88) 45%,  /* Still dark over text */
-            rgba(5,5,5,0.50) 75%,  /* Fade to show image below */
-            rgba(5,5,5,0.95) 100%  /* Dark again at bottom to blend */
+            rgba(5,5,5,0.98) 0%,   
+            rgba(5,5,5,0.92) 30%,  
+            rgba(5,5,5,0.40) 65%,  
+            rgba(5,5,5,0.95) 100%  
         );
     }
     .hero__title {
