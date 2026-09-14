@@ -320,93 +320,121 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     /* ===================================================================
-       12. SPEAKERS PREMIUM SLIDER
+       12. SPEAKERS HERO CAROUSEL
        =================================================================== */
     const speakersSlider = document.getElementById('speakersSlider');
     if (speakersSlider) {
-        const track = document.getElementById('speakersTrack');
-        const slides = Array.from(track.querySelectorAll('.speakers-slide'));
-        const names = Array.from(document.querySelectorAll('.speakers-slider__name-btn'));
-        const counter = document.getElementById('speakersCounter');
+        const track       = document.getElementById('speakersTrack');
+        const slides      = Array.from(track.querySelectorAll('.spk-slide'));
+        const namesBtns   = Array.from(speakersSlider.querySelectorAll('.spk-carousel__name-btn'));
+        const counter     = document.getElementById('speakersCounter');
         const progressFill = document.getElementById('speakersProgress');
-        const btnPrev = document.getElementById('speakersPrev');
-        const btnNext = document.getElementById('speakersNext');
+        const btnPrev     = document.getElementById('speakersPrev');
+        const btnNext     = document.getElementById('speakersNext');
 
         let currentIndex = 0;
         const totalSlides = slides.length;
         let isAnimating = false;
-        
         let startX = 0;
         let currentX = 0;
 
-        function updateSlider(index) {
-            if (index < 0 || index >= totalSlides || isAnimating) return;
-            isAnimating = true;
-            currentIndex = index;
-
-            // Active classes for slides (CSS handles the specific animations)
-            slides.forEach((s, i) => {
-                s.classList.toggle('active', i === currentIndex);
-            });
-
-            // Active classes for names
-            names.forEach((n, i) => {
-                n.classList.toggle('active', i === currentIndex);
-            });
-
-            // Counter & Progress
-            const displayIndex = String(currentIndex + 1).padStart(2, '0');
-            const displayTotal = String(totalSlides).padStart(2, '0');
-            counter.textContent = `${displayIndex} / ${displayTotal}`;
-            
-            progressFill.style.width = `${((currentIndex + 1) / totalSlides) * 100}%`;
-
-            setTimeout(() => {
-                isAnimating = false;
-            }, 800); // matches CSS transition time
+        /**
+         * Move the track to show `index` and mark it active.
+         * Offset = sum of widths of all slides before `index`.
+         * Each slide has flex-basis = calc(100vw - 80px) on desktop (100vw - 32px on mobile).
+         */
+        function getSlideWidth() {
+            return slides[0] ? slides[0].getBoundingClientRect().width : window.innerWidth;
         }
 
-        // Navigation Clicks
+        function goTo(index, instant) {
+            if (index < 0 || index >= totalSlides || isAnimating) return;
+            isAnimating = true;
+
+            const prevIndex = currentIndex;
+            currentIndex = index;
+
+            // Apply translateX to track
+            const offset = index * getSlideWidth();
+            if (instant) {
+                track.style.transition = 'none';
+            } else {
+                track.style.transition = 'transform 0.75s cubic-bezier(0.77, 0, 0.175, 1)';
+            }
+            track.style.transform = `translateX(-${offset}px)`;
+
+            // Toggle active class on slides (drives image scale + body fade)
+            slides.forEach((s, i) => {
+                s.classList.toggle('spk-slide--active', i === currentIndex);
+            });
+
+            // Names buttons
+            namesBtns.forEach((btn, i) => {
+                btn.classList.toggle('active', i === currentIndex);
+            });
+
+            // Counter & progress
+            const disp = String(currentIndex + 1).padStart(2, '0');
+            const tot  = String(totalSlides).padStart(2, '0');
+            counter.textContent = `${disp} / ${tot}`;
+            progressFill.style.width = `${((currentIndex + 1) / totalSlides) * 100}%`;
+
+            // Arrow disabled states
+            btnPrev.disabled = currentIndex === 0;
+            btnNext.disabled = currentIndex === totalSlides - 1;
+
+            // Release animation lock after transition
+            setTimeout(() => {
+                isAnimating = false;
+                if (instant) {
+                    track.style.transition = 'transform 0.75s cubic-bezier(0.77, 0, 0.175, 1)';
+                }
+            }, instant ? 50 : 800);
+        }
+
+        // Arrow clicks
         btnNext.addEventListener('click', () => {
-            if (currentIndex < totalSlides - 1) updateSlider(currentIndex + 1);
+            if (currentIndex < totalSlides - 1) goTo(currentIndex + 1);
         });
-
         btnPrev.addEventListener('click', () => {
-            if (currentIndex > 0) updateSlider(currentIndex - 1);
+            if (currentIndex > 0) goTo(currentIndex - 1);
         });
 
-        names.forEach(btn => {
+        // Name button clicks
+        namesBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                const goto = parseInt(btn.getAttribute('data-goto'), 10);
-                updateSlider(goto);
+                const idx = parseInt(btn.getAttribute('data-goto'), 10);
+                goTo(idx);
             });
         });
 
-        // Mobile Swipe Support
-        track.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        }, { passive: true });
-
-        track.addEventListener('touchmove', (e) => {
-            currentX = e.touches[0].clientX;
-        }, { passive: true });
-
+        // Touch / swipe
+        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchmove',  e => { currentX = e.touches[0].clientX; }, { passive: true });
         track.addEventListener('touchend', () => {
             if (!startX || !currentX) return;
             const diff = startX - currentX;
-            if (diff > 50 && currentIndex < totalSlides - 1) {
-                updateSlider(currentIndex + 1);
-            } else if (diff < -50 && currentIndex > 0) {
-                updateSlider(currentIndex - 1);
-            }
-            startX = 0;
-            currentX = 0;
+            if (diff > 50 && currentIndex < totalSlides - 1) goTo(currentIndex + 1);
+            else if (diff < -50 && currentIndex > 0)         goTo(currentIndex - 1);
+            startX = 0; currentX = 0;
         });
-        
-        // Initial state
-        updateSlider(0);
+
+        // Keyboard
+        speakersSlider.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+            if (e.key === 'ArrowLeft')  goTo(currentIndex - 1);
+        });
+
+        // Re-apply offset on resize (debounced)
+        window.addEventListener('resize', debounce(() => {
+            goTo(currentIndex, true);
+        }, 150));
+
+        // Init
+        goTo(0, true);
     }
     });
+
 
     // 6. KART VIDEO CUSTOM PLAYER
     const kartVideo = document.getElementById('kartVideo');
