@@ -1102,6 +1102,20 @@ h2,
     border: 1px solid var(--gold) !important;
     box-shadow: 0 0 10px rgba(214, 170, 67, 0.2);
 }
+.timeline__locked {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-5);
+}
+.timeline__locked-logo {
+    max-width: 100px;
+    height: auto;
+    flex-shrink: 0;
+}
+.timeline__locked-text {
+    color: var(--gray-light);
+    margin: 0;
+}
 .schedule__header {
     margin-bottom: var(--sp-12);
 }
