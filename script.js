@@ -10,7 +10,7 @@ const CONFIG = {
     GA4_ID: '',           // Insert Google Analytics 4 Measurement ID
     META_PIXEL_ID: '',    // Insert Meta Pixel ID
     CLARITY_ID: '',       // Insert Microsoft Clarity ID
-    CRM_WEBHOOK_URL: 'https://webhook.unnica.com.br/receber', // Replace with actual CRM Unnica webhook
+    CRM_WEBHOOK_URL: 'https://webhook.unnica.com.br/functions/v1/flow-webhook-receive?token=whk_1pBnuF4leMt7DLBn2fhnJlNcFIb4BVbp',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,18 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /* ===================================================================
-       1. HEADER — Scroll background + shrink
-       =================================================================== */
-    const header = document.getElementById('header');
-    const onScroll_header = () => {
-        if (!header) return;
-        header.classList.toggle('scrolled', window.scrollY > 60);
-    };
-    window.addEventListener('scroll', onScroll_header, { passive: true });
-    onScroll_header();
-
-    /* ===================================================================
-       2. SMOOTH SCROLL for anchor links
+       1. SMOOTH SCROLL for anchor links
        =================================================================== */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function (e) {
@@ -48,53 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!target) return;
             e.preventDefault();
 
-            // Close mobile menu if open
-            if (nav && nav.classList.contains('menu-open')) toggleMenu();
-
-            const offset = header ? header.offsetHeight + 10 : 90;
-            const y = target.getBoundingClientRect().top + window.scrollY - offset;
+            const y = target.getBoundingClientRect().top + window.scrollY - 90;
             window.scrollTo({ top: y, behavior: 'smooth' });
 
             // Accessibility: move focus
             target.setAttribute('tabindex', '-1');
             target.focus({ preventScroll: true });
         });
-    });
-
-    /* ===================================================================
-       3. MOBILE MENU
-       =================================================================== */
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('main-nav');
-
-    function toggleMenu() {
-        if (!hamburger || !nav) return;
-        const opening = !nav.classList.contains('menu-open');
-        nav.classList.toggle('menu-open', opening);
-        hamburger.classList.toggle('active', opening);
-        hamburger.setAttribute('aria-expanded', String(opening));
-        document.body.style.overflow = opening ? 'hidden' : '';
-    }
-
-    if (hamburger) {
-        hamburger.addEventListener('click', toggleMenu);
-    }
-
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-        if (nav && nav.classList.contains('menu-open') &&
-            !nav.contains(e.target) &&
-            !hamburger.contains(e.target)) {
-            toggleMenu();
-        }
-    });
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && nav && nav.classList.contains('menu-open')) {
-            toggleMenu();
-            hamburger.focus();
-        }
     });
 
     /* ===================================================================
@@ -163,16 +112,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ===================================================================
-       6. TIMELINE PROGRESS
+       6. TIMELINE PROGRESS — o trilho acende conforme a página rola
        =================================================================== */
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    if (timelineItems.length) {
-        const tlObs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+    const timelineTrack = document.querySelector('.timeline');
+    let rafTimeline;
+
+    function updateTimelineProgress() {
+        const rect = timelineTrack.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // 0% quando o topo do trilho entra pela base da tela,
+        // 100% quando a base do trilho passa do topo da tela.
+        const pct = (vh - rect.top) / (rect.height + vh);
+        timelineTrack.style.setProperty('--progress', `${Math.min(1, Math.max(0, pct)) * 100}%`);
+    }
+
+    if (timelineTrack) {
+        window.addEventListener('scroll', () => {
+            if (rafTimeline) return;
+            rafTimeline = requestAnimationFrame(() => {
+                updateTimelineProgress();
+                rafTimeline = null;
             });
-        }, { threshold: 0.3, rootMargin: '-5% 0px -5% 0px' });
-        timelineItems.forEach(item => tlObs.observe(item));
+        }, { passive: true });
+        updateTimelineProgress();
     }
 
     /* ===================================================================
@@ -234,15 +196,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ===================================================================
+       8.4. DISPONIBILIDADE DOS LOTES POR DATA
+       Cada lote (.lot-card no grid de preços, .ticket-toggle-option no
+       formulário) carrega data-start/data-end. Comparamos com a data do
+       visitante e bloqueamos visualmente o que ainda não abriu ou já fechou.
+       =================================================================== */
+    const now = new Date();
+    let activeRadio = null;
+
+    function lotState(el) {
+        const start = new Date(el.dataset.start);
+        const end = new Date(el.dataset.end);
+        if (now < start) return 'locked';
+        if (now > end) return 'expired';
+        return 'active';
+    }
+
+    document.querySelectorAll('.lot-card[data-start]').forEach(card => {
+        const state = lotState(card);
+        const btn = card.querySelector('.lot-card__btn');
+        if (state === 'active') return;
+
+        card.classList.add(`lot-card--${state}`);
+        if (btn) {
+            btn.dataset.originalText = btn.textContent.trim();
+            btn.textContent = state === 'locked'
+                ? `DISPONÍVEL EM ${new Date(card.dataset.start).toLocaleDateString('pt-BR')}`
+                : 'LOTE ENCERRADO';
+            btn.setAttribute('aria-disabled', 'true');
+            btn.setAttribute('tabindex', '-1');
+        }
+    });
+
+    document.querySelectorAll('.ticket-toggle-option[data-start]').forEach(opt => {
+        const state = lotState(opt);
+        const input = opt.querySelector('input[type="radio"]');
+        if (state === 'active') {
+            if (!activeRadio) activeRadio = input;
+            return;
+        }
+        opt.classList.add(`ticket-toggle-option--${state}`);
+        if (input) input.disabled = true;
+    });
+
+    // Nenhum lote na janela (ex.: todos encerrados) → cai no primeiro rádio para o form não submeter vazio
+    (activeRadio || document.querySelector('input[name="ticket_tier"]')).checked = true;
+
+    /* ===================================================================
        8.5. TICKET SELECTION & SCROLL TO FORM
        =================================================================== */
-    document.querySelectorAll('[data-ticket]').forEach(btn => {
+    document.querySelectorAll('[data-ticket]:not([aria-disabled="true"])').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const tier = btn.dataset.ticket;
-            const targetRadio = tier === 'vip' 
-                ? document.querySelector('input[name="ticket_tier"][value*="1.000"]')
-                : document.querySelector('input[name="ticket_tier"][value*="500"]');
-            
+            // data-ticket="lote-1" → primeiro rádio, "lote-2" → segundo, etc.
+            const index = Number(btn.dataset.ticket.split('-')[1]) - 1;
+            const radios = document.querySelectorAll('input[name="ticket_tier"]');
+            const targetRadio = radios[index];
+
+
             if (targetRadio) {
                 targetRadio.checked = true;
                 // Dispatch change event to update any visual radio styles
@@ -319,120 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 heroImg.addEventListener('load', () => heroSection.classList.add('hero-loaded'));
             }
         }
-    /* ===================================================================
-       12. SPEAKERS HERO CAROUSEL
-       =================================================================== */
-    const speakersSlider = document.getElementById('speakersSlider');
-    if (speakersSlider) {
-        const track       = document.getElementById('speakersTrack');
-        const slides      = Array.from(track.querySelectorAll('.spk-slide'));
-        const namesBtns   = Array.from(speakersSlider.querySelectorAll('.spk-carousel__name-btn'));
-        const counter     = document.getElementById('speakersCounter');
-        const progressFill = document.getElementById('speakersProgress');
-        const btnPrev     = document.getElementById('speakersPrev');
-        const btnNext     = document.getElementById('speakersNext');
-
-        let currentIndex = 0;
-        const totalSlides = slides.length;
-        let isAnimating = false;
-        let startX = 0;
-        let currentX = 0;
-
-        /**
-         * Move the track to show `index` and mark it active.
-         * Offset = sum of widths of all slides before `index`.
-         * Each slide has flex-basis = calc(100vw - 80px) on desktop (100vw - 32px on mobile).
-         */
-        function getSlideWidth() {
-            return slides[0] ? slides[0].getBoundingClientRect().width : window.innerWidth;
-        }
-
-        function goTo(index, instant) {
-            if (index < 0 || index >= totalSlides || isAnimating) return;
-            isAnimating = true;
-
-            const prevIndex = currentIndex;
-            currentIndex = index;
-
-            // Apply translateX to track
-            const offset = index * getSlideWidth();
-            if (instant) {
-                track.style.transition = 'none';
-            } else {
-                track.style.transition = 'transform 0.75s cubic-bezier(0.77, 0, 0.175, 1)';
-            }
-            track.style.transform = `translateX(-${offset}px)`;
-
-            // Toggle active class on slides (drives image scale + body fade)
-            slides.forEach((s, i) => {
-                s.classList.toggle('spk-slide--active', i === currentIndex);
-            });
-
-            // Names buttons
-            namesBtns.forEach((btn, i) => {
-                btn.classList.toggle('active', i === currentIndex);
-            });
-
-            // Counter & progress
-            const disp = String(currentIndex + 1).padStart(2, '0');
-            const tot  = String(totalSlides).padStart(2, '0');
-            counter.textContent = `${disp} / ${tot}`;
-            progressFill.style.width = `${((currentIndex + 1) / totalSlides) * 100}%`;
-
-            // Arrow disabled states
-            btnPrev.disabled = currentIndex === 0;
-            btnNext.disabled = currentIndex === totalSlides - 1;
-
-            // Release animation lock after transition
-            setTimeout(() => {
-                isAnimating = false;
-                if (instant) {
-                    track.style.transition = 'transform 0.75s cubic-bezier(0.77, 0, 0.175, 1)';
-                }
-            }, instant ? 50 : 800);
-        }
-
-        // Arrow clicks
-        btnNext.addEventListener('click', () => {
-            if (currentIndex < totalSlides - 1) goTo(currentIndex + 1);
-        });
-        btnPrev.addEventListener('click', () => {
-            if (currentIndex > 0) goTo(currentIndex - 1);
-        });
-
-        // Name button clicks
-        namesBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const idx = parseInt(btn.getAttribute('data-goto'), 10);
-                goTo(idx);
-            });
-        });
-
-        // Touch / swipe
-        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-        track.addEventListener('touchmove',  e => { currentX = e.touches[0].clientX; }, { passive: true });
-        track.addEventListener('touchend', () => {
-            if (!startX || !currentX) return;
-            const diff = startX - currentX;
-            if (diff > 50 && currentIndex < totalSlides - 1) goTo(currentIndex + 1);
-            else if (diff < -50 && currentIndex > 0)         goTo(currentIndex - 1);
-            startX = 0; currentX = 0;
-        });
-
-        // Keyboard
-        speakersSlider.addEventListener('keydown', e => {
-            if (e.key === 'ArrowRight') goTo(currentIndex + 1);
-            if (e.key === 'ArrowLeft')  goTo(currentIndex - 1);
-        });
-
-        // Re-apply offset on resize (debounced)
-        window.addEventListener('resize', debounce(() => {
-            goTo(currentIndex, true);
-        }, 150));
-
-        // Init
-        goTo(0, true);
-    }
     });
 
 

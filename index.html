@@ -60,35 +60,6 @@
     <!-- Skip to Content -->
     <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
-    <!-- ========== 1. HEADER ========== -->
-    <header class="header" id="header">
-        <div class="container header__inner">
-            <a href="#hero" class="header__logo" aria-label="Última Volta 2026 — Início">
-                <img src="id/logo%20sem%20fundo.png" alt="Última Volta — Imersão Empresarial" class="header__logo-img">
-                <img src="id/logo%20reduzida.png" alt="Última Volta" class="header__logo-icon">
-            </a>
-
-            <nav class="header__nav" id="main-nav" aria-label="Navegação principal">
-                <ul class="header__menu">
-                    <li><a href="#evento">O Evento</a></li>
-                    <li><a href="#palestrantes">Palestrantes</a></li>
-                    <li><a href="#programacao">Programação</a></li>
-                    <li><a href="#experiencia">Experiência</a></li>
-                    <li><a href="#ingressos">Ingressos</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </nav>
-
-            <a href="#ingressos" class="btn btn-primary header__cta" data-track="header_cta">GARANTIR MEU INGRESSO</a>
-
-            <button class="header__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
     <main id="main-content">
 
         <!-- ========== 2. HERO SECTION ========== -->
@@ -100,7 +71,12 @@
                 <div class="hero__content">
                     <div class="hero__top-brand reveal">
                         <span class="eyebrow">IMERSÃO EMPRESARIAL</span>
-                        <img src="id/logo%20sem%20fundo.png" alt="Última Volta" class="hero__logo">
+                        <div class="hero__logo-row">
+                            <img src="id/logo%20sem%20fundo.png" alt="Última Volta" class="hero__logo">
+                            <span class="hero__logo-sep" aria-hidden="true"></span>
+                            <img src="id/logo-caup.png" alt="CAUP" class="hero__partner-logo">
+                            <img src="id/logo-scuderia-bandeiras.png" alt="Scuderia Bandeiras" class="hero__partner-logo">
+                        </div>
                     </div>
 
                     <h1 class="hero__title reveal" data-delay="100">
@@ -149,10 +125,13 @@
 
                     <p class="hero__tagline reveal" data-delay="500">A BANDEIRADA AINDA NÃO FOI DADA.</p>
                 </div>
+
+                <img src="hero/hero-speakers-mobile.png" alt="Lilian Carmo, Lasaro do Carmo Jr. e Atila Abreu" class="hero__speakers-mobile reveal" data-delay="550">
             </div>
         </section>
 
-        <!-- ========== 3. FOUR PILLARS ========== -->
+        <!-- ========== 3. FOUR PILLARS + MERCADO (faixa única sobre a pista) ========== -->
+        <div class="track-band">
         <section class="pillars" id="evento">
             <div class="container pillars__grid">
                 <div class="pillars__item reveal" data-delay="0">
@@ -202,14 +181,17 @@
                 </div>
             </div>
         </section>
+        </div>
 
         <!-- ========== 5. IDENTIFICAÇÃO / DORES ========== -->
         <section class="pains section">
             <div class="container">
-                <h2 class="pains__title reveal">Talvez 2026 não esteja acontecendo como você planejou.</h2>
+                <h2 class="pains__title reveal">
+                    Talvez 2026 não esteja <span class="text-gold-gradient">acontecendo como você planejou.</span>
+                </h2>
 
                 <div class="pains__grid">
-                    <div class="pains__card pains__card--wide reveal" data-delay="100">
+                    <div class="pains__card reveal" data-delay="100">
                         <span class="pains__num">01</span>
                         <p class="pains__text">Você está perdendo vendas em comparação ao ano anterior.</p>
                     </div>
@@ -221,27 +203,11 @@
                         <span class="pains__num">03</span>
                         <p class="pains__text">Sua equipe trabalha muito sem avançar nas prioridades.</p>
                     </div>
-                    <div class="pains__card pains__card--wide reveal" data-delay="400">
+                    <div class="pains__card reveal" data-delay="400">
                         <span class="pains__num">04</span>
                         <p class="pains__text">Os resultados de 2026 estão abaixo do planejado.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- ========== 6. A GRANDE PERGUNTA ========== -->
-        <section class="big-question section">
-            <div class="big-question__track-line" aria-hidden="true"></div>
-            <div class="container big-question__inner">
-                <div class="big-question__badge reveal">
-                    <img src="id/logo%20reduzida.png" alt="Selo Última Volta" class="big-question__badge-icon">
-                    <span>MOMENTO DECISIVO</span>
-                </div>
-                <p class="big-question__pre reveal" data-delay="100">A pergunta agora não é o que aconteceu até aqui.</p>
-                <h2 class="big-question__title reveal" data-delay="200">
-                    O QUE VOCÊ FARÁ<br>COM A <span class="text-gold-gradient">ÚLTIMA VOLTA</span>?
-                </h2>
-                <div class="big-question__divider reveal" data-delay="300" aria-hidden="true"></div>
             </div>
         </section>
 
@@ -250,7 +216,7 @@
             <div class="container">
                 <div class="solution__header text-center">
                     <span class="eyebrow reveal">A OPORTUNIDADE DE REAÇÃO</span>
-                    <h2 class="solution__title reveal" data-delay="100">AINDA EXISTE TEMPO PARA MUDAR O RESULTADO DE 2026.</h2>
+                    <h2 class="solution__title reveal" data-delay="100">AINDA EXISTE TEMPO PARA MUDAR O <br><span class="text-gold-gradient">RESULTADO DE 2026.</span></h2>
                     <p class="solution__intro reveal" data-delay="150">
                         O <strong>Estamos na "Última Volta"</strong> foi criado para empresários que ainda podem mudar o resultado do ano. Em um único dia, você terá contato com estratégias e experiências para identificar onde sua empresa está perdendo dinheiro, velocidade e oportunidades.
                     </p>
@@ -342,7 +308,8 @@
                 </div>
 
                 <p class="solution__closing reveal">
-                    Você sairá da operação para olhar a empresa da cadeira estratégica do dono e decidir o que acelerar, interromper e priorizar.
+                    Você sairá da operação para olhar a empresa da cadeira
+                    <span class="text-gold-gradient">estratégica do dono e decidir o que acelerar, interromper e priorizar.</span>
                 </p>
             </div>
         </section>
@@ -350,101 +317,42 @@
         <!-- ========== 8. PALESTRANTES ========== -->
         <section class="speakers" id="palestrantes">
 
-            <!-- Hero Carousel — full bleed, title integrated as overlay -->
-            <div class="spk-carousel" id="speakersSlider" aria-label="Carrossel de palestrantes">
-
-                <!-- Title overlay — floats at top of the carousel over the image -->
-                <div class="spk-carousel__header" aria-label="Seção de palestrantes">
-                    <span class="eyebrow">LINE-UP DA EXPERIÊNCIA</span>
-                    <h2 class="speakers__title">QUEM CONDUZ A ÚLTIMA VOLTA</h2>
-                    <p class="speakers__subtitle">Três visões complementares para ajudar empresários a decidir, reagir e crescer ainda em 2026.</p>
+            <div class="container">
+                <div class="speakers__header text-center">
+                    <span class="eyebrow reveal">LINE-UP DA EXPERIÊNCIA</span>
+                    <h2 class="speakers__title reveal" data-delay="100">QUEM CONDUZ A <span class="text-gold-gradient">ÚLTIMA VOLTA</span></h2>
+                    <p class="speakers__subtitle reveal" data-delay="150">Três visões complementares para ajudar empresários a decidir, reagir e crescer ainda em 2026.</p>
                 </div>
 
-                <div class="spk-carousel__viewport">
-                    <div class="spk-carousel__track" id="speakersTrack">
-
-                        <!-- Slide 1: Lázaro -->
-                        <div class="spk-slide" data-index="0" role="group" aria-label="Palestrante 1 de 3">
-                            <div class="spk-slide__bg"></div>
-                            <div class="spk-slide__overlay spk-slide__overlay--left" aria-hidden="true"></div>
-                            <div class="spk-slide__overlay spk-slide__overlay--right" aria-hidden="true"></div>
-                            <div class="spk-slide__overlay spk-slide__overlay--bottom" aria-hidden="true"></div>
-                            <div class="spk-slide__figure" aria-hidden="true">
-                                <img src="./Carrossel/Lasaro.png" alt="Lázaro do Carmo Jr." class="spk-slide__img spk-slide__img--lasaro">
-                                <div class="spk-slide__figure-shadow" aria-hidden="true"></div>
-                            </div>
-                            <div class="spk-slide__body">
-                                <span class="spk-slide__category">ACONSELHAMENTO + PODCAST</span>
-                                <h3 class="spk-slide__name">Lázaro do Carmo Jr.</h3>
-                                <p class="spk-slide__desc">Liderança, riscos e as decisões que o empresário precisa tomar quando o cenário muda.</p>
-                            </div>
+                <div class="speakers__grid reveal-group">
+                    <article class="spk-card reveal-child">
+                        <img src="./Carrossel/lasaro-card.png" alt="Lázaro do Carmo Jr." class="spk-card__img">
+                        <div class="spk-card__body">
+                            <span class="spk-card__category">ACONSELHAMENTO + PODCAST</span>
+                            <h3 class="spk-card__name">Lázaro do Carmo Jr.</h3>
+                            <p class="spk-card__desc">Liderança, riscos e as decisões que o empresário precisa tomar quando o cenário muda.</p>
                         </div>
+                    </article>
 
-                        <!-- Slide 2: Lilian -->
-                        <div class="spk-slide" data-index="1" role="group" aria-label="Palestrante 2 de 3">
-                            <div class="spk-slide__bg"></div>
-                            <div class="spk-slide__overlay spk-slide__overlay--left" aria-hidden="true"></div>
-                            <div class="spk-slide__overlay spk-slide__overlay--right" aria-hidden="true"></div>
-                            <div class="spk-slide__overlay spk-slide__overlay--bottom" aria-hidden="true"></div>
-                            <div class="spk-slide__figure" aria-hidden="true">
-                                <img src="./Carrossel/Lilian.png" alt="Lilian Carmo" class="spk-slide__img spk-slide__img--lilian">
-                                <div class="spk-slide__figure-shadow" aria-hidden="true"></div>
-                            </div>
-                            <div class="spk-slide__body">
-                                <span class="spk-slide__category">CONTEÚDO DE ALTO VALOR</span>
-                                <h3 class="spk-slide__name">Lilian Carmo</h3>
-                                <p class="spk-slide__desc">Estratégia, gestão e alavancas para transformar os últimos meses de 2026.</p>
-                            </div>
+                    <article class="spk-card reveal-child">
+                        <img src="./Carrossel/lilian-card.png" alt="Lilian Carmo" class="spk-card__img">
+                        <div class="spk-card__body">
+                            <span class="spk-card__category">CONTEÚDO DE ALTO VALOR</span>
+                            <h3 class="spk-card__name">Lilian Carmo</h3>
+                            <p class="spk-card__desc">Estratégia, gestão e alavancas para transformar os últimos meses de 2026.</p>
                         </div>
+                    </article>
 
-                        <!-- Slide 3: Átila -->
-                        <div class="spk-slide" data-index="2" role="group" aria-label="Palestrante 3 de 3">
-                            <div class="spk-slide__bg"></div>
-                            <div class="spk-slide__overlay spk-slide__overlay--left" aria-hidden="true"></div>
-                            <div class="spk-slide__overlay spk-slide__overlay--right" aria-hidden="true"></div>
-                            <div class="spk-slide__overlay spk-slide__overlay--bottom" aria-hidden="true"></div>
-                            <div class="spk-slide__figure" aria-hidden="true">
-                                <img src="./Carrossel/Atila Abreu.png" alt="Átila Abreu" class="spk-slide__img spk-slide__img--atila">
-                                <div class="spk-slide__figure-shadow" aria-hidden="true"></div>
-                            </div>
-                            <div class="spk-slide__body">
-                                <span class="spk-slide__category">PALESTRA + PODCAST</span>
-                                <h3 class="spk-slide__name">Átila Abreu</h3>
-                                <p class="spk-slide__desc">Decisão, velocidade, foco e execução para competir sob pressão.</p>
-                            </div>
+                    <article class="spk-card reveal-child">
+                        <img src="./Carrossel/atila-card.png" alt="Átila Abreu" class="spk-card__img">
+                        <div class="spk-card__body">
+                            <span class="spk-card__category">PALESTRA + PODCAST</span>
+                            <h3 class="spk-card__name">Átila Abreu</h3>
+                            <p class="spk-card__desc">Decisão, velocidade, foco e execução para competir sob pressão.</p>
                         </div>
-
-                    </div><!-- /.spk-carousel__track -->
-                </div><!-- /.spk-carousel__viewport -->
-
-                <!-- Controls -->
-                <div class="spk-carousel__controls">
-                    <div class="spk-carousel__left-controls">
-                        <span class="spk-carousel__counter" id="speakersCounter">01 / 03</span>
-                        <div class="spk-carousel__progress-bar">
-                            <div class="spk-carousel__progress-fill" id="speakersProgress"></div>
-                        </div>
-                    </div>
-
-                    <nav class="spk-carousel__names" aria-label="Navegar para palestrante">
-                        <button class="spk-carousel__name-btn active" data-goto="0">LÁZARO DO CARMO JR.</button>
-                        <span class="spk-carousel__name-sep" aria-hidden="true">—</span>
-                        <button class="spk-carousel__name-btn" data-goto="1">LILIAN CARMO</button>
-                        <span class="spk-carousel__name-sep" aria-hidden="true">—</span>
-                        <button class="spk-carousel__name-btn" data-goto="2">ÁTILA ABREU</button>
-                    </nav>
-
-                    <div class="spk-carousel__arrows">
-                        <button class="spk-carousel__arrow" id="speakersPrev" aria-label="Palestrante anterior">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                        </button>
-                        <button class="spk-carousel__arrow" id="speakersNext" aria-label="Próximo palestrante">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </button>
-                    </div>
-                </div><!-- /.spk-carousel__controls -->
-
-            </div><!-- /.spk-carousel -->
+                    </article>
+                </div>
+            </div>
 
         </section>
 
@@ -453,98 +361,111 @@
             <div class="container">
                 <div class="schedule__header text-center">
                     <span class="eyebrow reveal">LINE-UP DA EXPERIÊNCIA</span>
-                    <h2 class="schedule__title reveal" data-delay="100">UMA JORNADA ESTRATÉGICA PARA QUEM DECIDIU NÃO ESPERAR 2027.</h2>
+                    <h2 class="schedule__title reveal" data-delay="100">UMA JORNADA ESTRATÉGICA <span class="text-gold-gradient">PARA QUEM DECIDIU NÃO ESPERAR 2027.</span></h2>
                     <p class="schedule__subtitle reveal" data-delay="150">Cada horário foi desenhado para provocar reflexão, alinhamento tático e decisões de impacto real.</p>
                 </div>
 
                 <div class="timeline">
                     <!-- Lap 1 -->
                     <div class="timeline__item timeline-item reveal">
-                        <div class="timeline__dot"></div>
-                        <div class="timeline__time">08:00 ÀS 10:00</div>
-                        <div class="timeline__body">
-                            <span class="timeline__badge">PALESTRA ESTRATÉGICA</span>
-                            <h3 class="timeline__speaker">Lilian Carmo</h3>
-                            <p>Estratégia, gestão e alavancas para transformar os últimos meses de 2026 em um período de reação, crescimento e preparação sólida para 2027.</p>
+                        <span class="timeline__num" aria-hidden="true">01</span>
+                        <div class="timeline__card">
+                            <div class="timeline__body">
+                                <div class="timeline__time">08:00 ÀS 10:00</div>
+                                <span class="timeline__badge">PALESTRA ESTRATÉGICA</span>
+                                <h3 class="timeline__speaker">Lilian Carmo</h3>
+                                <p>Estratégia, gestão e alavancas para transformar os últimos meses de 2026 em um período de reação, crescimento e preparação sólida para 2027.</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Lap 2 -->
                     <div class="timeline__item timeline-item reveal">
-                        <div class="timeline__dot"></div>
-                        <div class="timeline__time">10:00 ÀS 11:00</div>
-                        <div class="timeline__body">
-                            <span class="timeline__badge">ALTA PERFORMANCE</span>
-                            <h3 class="timeline__speaker">Atila Abreu</h3>
-                            <p>Decisão, velocidade, foco e execução para competir sob pressão no automobilismo profissional e no mundo dos negócios.</p>
+                        <span class="timeline__num" aria-hidden="true">02</span>
+                        <div class="timeline__card">
+                            <div class="timeline__body">
+                                <div class="timeline__time">10:00 ÀS 11:00</div>
+                                <span class="timeline__badge">ALTA PERFORMANCE</span>
+                                <h3 class="timeline__speaker">Atila Abreu</h3>
+                                <p>Decisão, velocidade, foco e execução para competir sob pressão no automobilismo profissional e no mundo dos negócios.</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Lap 3 -->
                     <div class="timeline__item timeline-item reveal">
-                        <div class="timeline__dot"></div>
-                        <div class="timeline__time">11:00 ÀS 11:40</div>
-                        <div class="timeline__body">
-                            <span class="timeline__badge">PODCAST AO VIVO</span>
-                            <h3 class="timeline__speaker">Lasaro do Carmo JR. + Atila Abreu</h3>
-                            <p>Uma conversa sem filtros sobre negócios, riscos, liderança, derrotas, retomadas e resultados na vida real.</p>
+                        <span class="timeline__num" aria-hidden="true">03</span>
+                        <div class="timeline__card">
+                            <div class="timeline__body">
+                                <div class="timeline__time">11:00 ÀS 11:40</div>
+                                <span class="timeline__badge">PODCAST AO VIVO</span>
+                                <h3 class="timeline__speaker">Lasaro do Carmo JR. + Atila Abreu</h3>
+                                <p>Uma conversa sem filtros sobre negócios, riscos, liderança, derrotas, retomadas e resultados na vida real.</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Lap 4 -->
                     <div class="timeline__item timeline-item reveal">
-                        <div class="timeline__dot"></div>
-                        <div class="timeline__time">11:40 ÀS 12:40</div>
-                        <div class="timeline__body">
-                            <span class="timeline__badge">ACONSELHAMENTO EM TEMPO REAL</span>
-                            <h3 class="timeline__speaker">Lasaro do Carmo JR.</h3>
-                            <p>As decisões difíceis que o empresário precisa tomar quando o cenário muda e a empresa precisa reagir com coragem.</p>
+                        <span class="timeline__num" aria-hidden="true">04</span>
+                        <div class="timeline__card">
+                            <div class="timeline__body">
+                                <div class="timeline__time">11:40 ÀS 12:40</div>
+                                <span class="timeline__badge">ACONSELHAMENTO EM TEMPO REAL</span>
+                                <h3 class="timeline__speaker">Lasaro do Carmo JR.</h3>
+                                <p>As decisões difíceis que o empresário precisa tomar quando o cenário muda e a empresa precisa reagir com coragem.</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Lap 5 -->
                     <div class="timeline__item timeline-item reveal">
-                        <div class="timeline__dot"></div>
-                        <div class="timeline__time">12:40 ÀS 13:30</div>
-                        <div class="timeline__body">
-                            <span class="timeline__badge">ALMOÇO DE CONEXÕES</span>
-                            <h3 class="timeline__speaker">Relacionamento & Networking</h3>
-                            <p>Momento reservado para troca de experiências, expansão de contatos e conexões qualificadas entre empresários.</p>
+                        <span class="timeline__num" aria-hidden="true">05</span>
+                        <div class="timeline__card">
+                            <div class="timeline__body">
+                                <div class="timeline__time">12:40 ÀS 13:30</div>
+                                <span class="timeline__badge">ALMOÇO DE CONEXÕES</span>
+                                <h3 class="timeline__speaker">Relacionamento &amp; Networking</h3>
+                                <p>Momento reservado para troca de experiências, expansão de contatos e conexões qualificadas entre empresários.</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Lap 6 (VIP) -->
                     <div class="timeline__item timeline__item--vip timeline-item reveal">
-                        <div class="timeline__dot timeline__dot--vip"></div>
-                        <div class="timeline__time">13:30 ÀS 15:00</div>
-                        <div class="timeline__body">
-                            <span class="timeline__badge timeline__badge--vip">EXPERIÊNCIA VIP</span>
-                            <h3 class="timeline__speaker">Experiência Pit Stop</h3>
-                            <p>Vivência prática sobre sincronia, liderança, processos e velocidade de execução com dinâmica em ambiente de corrida.</p>
+                        <span class="timeline__num" aria-hidden="true">06</span>
+                        <div class="timeline__card">
+                            <div class="timeline__body">
+                                <div class="timeline__time">13:30 ÀS 15:00</div>
+                                <span class="timeline__badge timeline__badge--vip">EXPERIÊNCIA VIP</span>
+                                <h3 class="timeline__speaker">Experiência Pit Stop</h3>
+                                <p>Vivência prática sobre sincronia, liderança, processos e velocidade de execução com dinâmica em ambiente de corrida.</p>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Lap 7 (VIP) -->
                     <div class="timeline__item timeline__item--vip timeline-item reveal">
-                        <div class="timeline__dot timeline__dot--vip"></div>
-                        <div class="timeline__time">15:00 ÀS 17:00</div>
-                        <div class="timeline__body">
-                            <span class="timeline__badge timeline__badge--vip">EXPERIÊNCIA VIP</span>
-                            <h3 class="timeline__speaker">Experiência Kart Crazy & Coquetel</h3>
-                            <p>Competitividade, ultrapassagem e adaptação na pista de kart, finalizando com coquetel executivo de encerramento.</p>
+                        <span class="timeline__num" aria-hidden="true">07</span>
+                        <div class="timeline__card">
+                            <div class="timeline__body">
+                                <div class="timeline__time">15:00 ÀS 17:00</div>
+                                <span class="timeline__badge timeline__badge--vip">EXPERIÊNCIA VIP</span>
+                                <h3 class="timeline__speaker">Experiência Kart Crazy &amp; Coquetel</h3>
+                                <p>Competitividade, ultrapassagem e adaptação na pista de kart, finalizando com coquetel executivo de encerramento.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========== 10. TRANSIÇÃO VIP ========== -->
+        <!-- ========== 10. TRANSIÇÃO VIP + PIT STOP (faixa única sobre a pista) ========== -->
+        <div class="track-band track-band--pitstop">
         <section class="vip-transition section" id="experiencia">
             <div class="container vip-transition__inner">
-                <div class="vip-transition__line"></div>
                 <span class="eyebrow reveal">A EXPERIÊNCIA NÃO PRECISA TERMINAR ÀS 13H.</span>
                 <h2 class="vip-transition__title reveal" data-delay="150">PARA ALGUNS, A <span class="text-gold-gradient">ÚLTIMA VOLTA</span> CONTINUA.</h2>
-                <div class="vip-transition__line"></div>
             </div>
         </section>
 
@@ -578,6 +499,7 @@
                 </div>
             </div>
         </section>
+        </div>
 
         <!-- ========== 12. KART CRAZY ========== -->
         <section class="kart section">
@@ -586,39 +508,43 @@
                     <div class="kart__content reveal">
                         <span class="time-marker">15H ÀS 17H</span>
                         <h2 class="kart__title">EXPERIÊNCIA<br><span class="text-gold">KART CRAZY</span></h2>
-                        <p>Uma experiência com estratégia, adaptação, competitividade e execução sob pressão.</p>
-                    </div>
+                        <p class="kart__lead">Uma experiência com estratégia, adaptação, competitividade e execução sob pressão.</p>
 
-                    <div class="kart__action reveal" data-delay="200">
                         <h3 class="kart__sub">NÃO BASTA ACELERAR.</h3>
                         <p>É preciso conhecer a pista, preservar recursos e escolher o momento certo para ultrapassar. Nesta segunda etapa você vai vivenciar experiências de alto valor em estratégia, networking e conexões.</p>
 
-                        <a href="#ingressos" class="btn btn-primary" data-track="vip_experience_cta">QUERO VIVER TUDO ISSO</a>
+                        <a href="#ingressos" class="btn btn-primary kart__cta" data-track="vip_experience_cta">
+                            <span>QUERO VIVER TUDO ISSO</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
                         <p class="micro">Quero viver essa experiência e terminar 2026 em uma posição diferente.</p>
+
+                        <p class="kart__tagline">Mais que pilotar<br>é evoluir.</p>
                     </div>
-                </div>
 
-                <!-- Vídeo da Experiência Kart Crazy (Formato Vertical 9:16) -->
-                <div class="kart__video kart__video--vertical reveal" data-delay="300">
-                    <div class="kart__video-wrapper kart__video-wrapper--vertical">
-                        <video 
-                            id="kartVideo"
-                            playsinline
-                            preload="metadata"
-                            style="cursor: pointer;"
-                        >
-                            <source src="id/kart-crazy.mp4" type="video/mp4">
-                            Seu navegador não suporta vídeo HTML5.
-                        </video>
+                    <!-- Vídeo da Experiência Kart Crazy (Formato Vertical 9:16) -->
+                    <div class="kart__video kart__video--vertical reveal" data-delay="200">
+                        <div class="kart__video-wrapper kart__video-wrapper--vertical">
+                            <video
+                                id="kartVideo"
+                                playsinline
+                                preload="metadata"
+                                style="cursor: pointer;"
+                            >
+                                <source src="id/kart-crazy.mp4" type="video/mp4">
+                                Seu navegador não suporta vídeo HTML5.
+                            </video>
 
-                        <!-- Custom Play Overlay -->
-                        <div class="kart__video-placeholder" id="kartVideoOverlay" style="cursor: pointer; background: rgba(0,0,0,0.4);">
-                            <div class="kart__video-play-btn" aria-hidden="true">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                                    <polygon points="6 3 20 12 6 21 6 3"/>
-                                </svg>
+                            <!-- Custom Play Overlay -->
+                            <div class="kart__video-placeholder" id="kartVideoOverlay" style="cursor: pointer; background: rgba(0,0,0,0.4);">
+                                <div class="kart__video-play-btn" aria-hidden="true">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                        <polygon points="6 3 20 12 6 21 6 3"/>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
+                        <p class="kart__video-caption">Velocidade conecta<br>pessoas extraordinárias</p>
                     </div>
                 </div>
             </div>
@@ -627,135 +553,133 @@
         <!-- ========== 13. VALOR DA DECISÃO ========== -->
         <section class="value section">
             <div class="container">
-                <h2 class="value__title reveal">QUANTO PODE CUSTAR TERMINAR 2026 COM A ESTRATÉGIA ERRADA?</h2>
+                <div class="value__header text-center">
+                    <span class="eyebrow reveal">ÚLTIMA VOLTA</span>
+                    <h2 class="value__title reveal" data-delay="100">QUANTO PODE CUSTAR <span class="text-gold-gradient">TERMINAR 2026 COM A</span> ESTRATÉGIA ERRADA?</h2>
 
-                <p class="value__intro reveal" data-delay="150">
-                    Por isso, o investimento na imersão Última Volta é pequeno perto da entrega e diante do impacto que uma decisão bem tomada pode gerar dentro de uma empresa.
-                </p>
+                    <p class="value__intro reveal" data-delay="150">
+                        Por isso, o investimento na imersão Última Volta é pequeno perto da entrega e diante do impacto que uma decisão bem tomada pode gerar dentro de uma empresa.
+                    </p>
+                </div>
 
                 <div class="value__grid reveal-group">
                     <div class="value__col">
-                        <h4 class="value__label">PROGRAMAÇÃO PRINCIPAL</h4>
+                        <h4 class="value__label"><span class="value__chevron" aria-hidden="true">&raquo;</span>PROGRAMAÇÃO PRINCIPAL</h4>
                         <ul class="value__list">
-                            <li class="reveal-child">Três empresários e executivos com experiências complementares e de alta relevância no mercado</li>
-                            <li class="reveal-child">Conteúdos aplicáveis a empresas em crescimento</li>
-                            <li class="reveal-child">Podcast ao vivo</li>
-                            <li class="reveal-child">Aconselhamento profissional em tempo real</li>
+                            <li class="reveal-child">
+                                <span class="value__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.2"/><path d="M16 14c2.8 0 5 2.2 5 5"/></svg></span>
+                                <span>Três empresários e executivos com experiências complementares e de alta relevância no mercado</span>
+                            </li>
+                            <li class="reveal-child">
+                                <span class="value__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="6" y1="20" x2="6" y2="13"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="4"/></svg></span>
+                                <span>Conteúdos aplicáveis a empresas em crescimento</span>
+                            </li>
+                            <li class="reveal-child">
+                                <span class="value__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="21"/></svg></span>
+                                <span>Podcast ao vivo</span>
+                            </li>
+                            <li class="reveal-child">
+                                <span class="value__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></span>
+                                <span>Aconselhamento profissional em tempo real</span>
+                            </li>
                         </ul>
                     </div>
                     <div class="value__col">
-                        <h4 class="value__label">EXPERIÊNCIA ADICIONAL</h4>
+                        <h4 class="value__label"><span class="value__chevron" aria-hidden="true">&raquo;</span>EXPERIÊNCIA ADICIONAL</h4>
                         <ul class="value__list">
-                            <li class="reveal-child">Experiência prática de liderança no Pit Stop</li>
-                            <li class="reveal-child">Experiência Kart Crazy</li>
-                            <li class="reveal-child">Coquetel de encerramento</li>
-                            <li class="reveal-child">Networking com empresários que enfrentam desafios semelhantes</li>
+                            <li class="reveal-child">
+                                <span class="value__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 13a8 8 0 0 1 16 0v3H8a4 4 0 0 1-4-3z"/><path d="M9 16v-3h11"/></svg></span>
+                                <span>Experiência prática de liderança no Pit Stop</span>
+                            </li>
+                            <li class="reveal-child">
+                                <span class="value__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4v16"/><path d="M5 5h14v9H5z"/><path d="M5 5h4.7v4.5H5zm9.3 0H19v4.5h-4.7zM9.7 9.5h4.6V14H9.7z" fill="currentColor" stroke="none"/></svg></span>
+                                <span>Experiência Kart Crazy</span>
+                            </li>
+                            <li class="reveal-child">
+                                <span class="value__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3l2 7-3.5 2.5"/><path d="M17 3l-2 7 3.5 2.5"/><path d="M4 20h7M13 20h7"/><path d="M9 10l-2.5 9M15 10l2.5 9"/></svg></span>
+                                <span>Coquetel de encerramento</span>
+                            </li>
+                            <li class="reveal-child">
+                                <span class="value__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.2"/><path d="M16 14c2.8 0 5 2.2 5 5"/></svg></span>
+                                <span>Networking com empresários que enfrentam desafios semelhantes</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
 
-                <p class="value__closing reveal">Um dia dedicado a decisões que podem mudar o encerramento de 2026 e o início de 2027</p>
+                <p class="value__closing reveal">Um dia dedicado a decisões que podem <span class="text-gold-gradient">mudar o encerramento de 2026 e o início de 2027</span></p>
             </div>
         </section>
 
         <!-- ========== 14. INGRESSOS & FORMATOS ========== -->
         <section class="tickets-section section" id="ingressos">
             <div class="container">
-                <div class="tickets-section__header text-center">
-                    <span class="eyebrow reveal">FORMATOS DE PARTICIPAÇÃO</span>
+                <div class="tickets-section__header">
+                    <span class="eyebrow reveal">GARANTA SUA VAGA</span>
                     <h2 class="tickets-section__title reveal" data-delay="100">
-                        ESCOLHA SEU LUGAR NA <span class="text-gold-gradient">ÚLTIMA VOLTA</span>
+                        MESMO EVENTO.<br><span class="text-gold-gradient">OPORTUNIDADES DIFERENTES.</span>
                     </h2>
                     <p class="tickets-section__subtitle reveal" data-delay="150">
-                        Dois formatos pensados para o nível de entrega, imersão e experiência que sua empresa busca.
+                        Escolha o momento certo para participar da Última Volta e viva uma experiência única de imersão, estratégia e networking.
                     </p>
                 </div>
 
-                <!-- Products Grid -->
+                <!-- Lotes -->
                 <div class="tickets__grid">
-                    <!-- Standard Ticket Card -->
-                    <div class="ticket-card ticket-card--standard reveal" data-delay="200">
-                        <div class="ticket-card__header">
-                            <span class="ticket-card__category">CONTEÚDO E ESTRATÉGIA</span>
-                            <h3 class="ticket-card__name">INGRESSO ÚLTIMA VOLTA</h3>
-                            <div class="ticket-card__time">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                                <span>8H ÀS 13H</span>
-                            </div>
-                        </div>
+                    <div class="lot-card reveal" data-delay="200" data-start="2026-09-14T00:00:00" data-end="2026-09-25T23:59:59">
+                        <span class="lot-card__label">PRIMEIRO LOTE</span>
+                        <p class="lot-card__period">DE 14/09 ATÉ 25/09</p>
 
-                        <div class="ticket-card__price-box">
-                            <span class="ticket-card__currency">R$</span>
-                            <span class="ticket-card__amount">500</span>
-                            <span class="ticket-card__period">por participante</span>
-                        </div>
+                        <p class="lot-card__from"><s>R$ 1.000</s></p>
+                        <p class="lot-card__price"><span class="lot-card__currency">R$</span>500<span class="lot-card__cents">,00</span></p>
 
-                        <p class="ticket-card__desc">
-                            Para empresários e tomadores de decisão focados em diagnosticar fraquezas, proteger margem e acelerar resultados no último trimestre de 2026.
-                        </p>
+                        <div class="lot-card__divider" aria-hidden="true"></div>
 
-                        <div class="ticket-card__divider"></div>
+                        <p class="lot-card__desc">Acesso completo à experiência Última Volta.</p>
 
-                        <ul class="ticket-card__features">
-                            <li>Programação principal completa com os três palestrantes</li>
-                            <li>Palestra de Lilian Carmo (Estratégia, gestão e alavancas)</li>
-                            <li>Palestra de Atila Abreu (Decisão, velocidade e execução)</li>
-                            <li>Podcast ao vivo com Lasaro do Carmo JR. e Atila Abreu</li>
-                            <li>Aconselhamento empresarial em tempo real com Lasaro do Carmo JR.</li>
-                            <li>Almoço executivo de relacionamento e networking</li>
-                            <li>Material e ferramentas práticas aplicáveis imediatamente</li>
-                        </ul>
-
-                        <a href="#formulario-inscricao" class="btn btn-outline ticket-card__btn" data-ticket="standard" data-track="ticket_standard_cta">
-                            GARANTIR MEU INGRESSO POR R$ 500
-                        </a>
+                        <a href="#formulario-inscricao" class="btn btn-outline lot-card__btn" data-ticket="lote-1" data-track="lote_1_cta">GARANTIR POR R$ 500</a>
                     </div>
 
-                    <!-- VIP Ticket Card (Featured) -->
-                    <div class="ticket-card ticket-card--vip reveal" data-delay="300">
-                        <div class="ticket-card__vip-badge">
-                            <span class="ticket-card__vip-glow"></span>
-                            <span>PASSAPORTE VIP EXCLUSIVO</span>
-                        </div>
+                    <div class="lot-card lot-card--featured reveal" data-delay="300" data-start="2026-09-25T00:00:00" data-end="2026-09-30T23:59:59">
+                        <span class="lot-card__badge">LOTE INTERMEDIÁRIO</span>
+                        <span class="lot-card__label">SEGUNDO LOTE</span>
+                        <p class="lot-card__period">DE 25/09 ATÉ 30/09</p>
 
-                        <div class="ticket-card__header">
-                            <span class="ticket-card__category text-gold">IMERSÃO COMPLETA + EXPERIÊNCIAS</span>
-                            <h3 class="ticket-card__name">EXPERIÊNCIA VIP</h3>
-                            <div class="ticket-card__time ticket-card__time--vip">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 16 14"/></svg>
-                                <span>8H ÀS 17H — DIA INTEGRAL</span>
-                            </div>
-                        </div>
+                        <p class="lot-card__from"><s>R$ 1.000</s></p>
+                        <p class="lot-card__price text-gold-gradient"><span class="lot-card__currency">R$</span>750<span class="lot-card__cents">,00</span></p>
 
-                        <div class="ticket-card__price-box">
-                            <span class="ticket-card__currency">R$</span>
-                            <span class="ticket-card__amount text-gold-gradient">1.000</span>
-                            <span class="ticket-card__period">por participante</span>
-                        </div>
+                        <div class="lot-card__divider" aria-hidden="true"></div>
 
-                        <p class="ticket-card__desc">
-                            A experiência máxima da Última Volta: além de toda a manhã estratégica, você vivencia na prática a adrenalina do Pit Stop e a competitividade do Kart Crazy.
-                        </p>
+                        <p class="lot-card__desc">Acesso completo à experiência Última Volta.</p>
 
-                        <div class="ticket-card__divider"></div>
+                        <a href="#formulario-inscricao" class="btn btn-primary lot-card__btn" data-ticket="lote-2" data-track="lote_2_cta">GARANTIR POR R$ 750</a>
+                    </div>
 
-                        <ul class="ticket-card__features ticket-card__features--vip">
-                            <li class="ticket-highlight"><strong>Tudo incluso no Ingresso Última Volta</strong> (manhã inteira)</li>
-                            <li class="ticket-highlight"><strong>Experiência prática Pit Stop</strong> (Liderança e sincronia sob pressão)</li>
-                            <li class="ticket-highlight"><strong>Experiência Kart Crazy na pista</strong> (Pilotagem, adaptação e ultrapassagem)</li>
-                            <li class="ticket-highlight"><strong>Coquetel exclusivo de encerramento</strong></li>
-                            <li class="ticket-highlight"><strong>Networking restrito com empresários e palestrantes</strong></li>
-                            <li>Assentos prioritários em todas as atividades</li>
-                            <li>Kit exclusivo do evento Última Volta</li>
-                        </ul>
+                    <div class="lot-card reveal" data-delay="400" data-start="2026-09-30T00:00:00" data-end="2026-10-06T23:59:59">
+                        <span class="lot-card__label">TERCEIRO LOTE</span>
+                        <p class="lot-card__period">DE 30/09 ATÉ O DIA DO EVENTO</p>
 
-                        <a href="#formulario-inscricao" class="btn btn-primary ticket-card__btn" data-ticket="vip" data-track="ticket_vip_cta">
-                            QUERO VIVER A EXPERIÊNCIA VIP
-                        </a>
+                        <p class="lot-card__from"><s>R$ 1.000</s></p>
+                        <p class="lot-card__price"><span class="lot-card__currency">R$</span>1.000<span class="lot-card__cents">,00</span></p>
+
+                        <div class="lot-card__divider" aria-hidden="true"></div>
+
+                        <p class="lot-card__desc">Acesso completo à experiência Última Volta.</p>
+
+                        <a href="#formulario-inscricao" class="btn btn-outline lot-card__btn" data-ticket="lote-3" data-track="lote_3_cta">GARANTIR POR R$ 1.000</a>
                     </div>
                 </div>
 
-                <!-- Form Section (CRM Unnica Integration) -->
+                <div class="tickets__notice reveal">
+                    <span class="tickets__notice-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+                    </span>
+                    <div class="tickets__notice-text">
+                        <strong>QUANTIDADE LIMITADA</strong>
+                        <span>Os lotes podem encerrar antes da data prevista.</span>
+                    </div>
+                </div>
+
                 <div class="form-card" id="formulario-inscricao">
                     <div class="form-card__inner reveal">
                         <div class="form-card__header text-center">
@@ -767,20 +691,27 @@
                         <form class="lead-form" id="lead-form" novalidate>
                             <!-- Ticket Selection Toggle -->
                             <div class="lead-form__ticket-select">
-                                <label class="lead-form__label">Formato escolhido:</label>
+                                <label class="lead-form__label">Lote escolhido:</label>
                                 <div class="ticket-toggle-group">
-                                    <label class="ticket-toggle-option" id="toggle-opt-standard">
-                                        <input type="radio" name="ticket_tier" value="Ingresso Última Volta - R$ 500" checked>
+                                    <label class="ticket-toggle-option" id="toggle-opt-lote-1" data-start="2026-09-14T00:00:00" data-end="2026-09-25T23:59:59">
+                                        <input type="radio" name="ticket_tier" value="Primeiro lote - R$ 500">
                                         <span class="ticket-toggle-content">
-                                            <strong>Ingresso Última Volta</strong>
-                                            <span>R$ 500 • 8h às 13h</span>
+                                            <strong>Primeiro lote</strong>
+                                            <span>R$ 500 • até 25/09</span>
                                         </span>
                                     </label>
-                                    <label class="ticket-toggle-option ticket-toggle-option--vip" id="toggle-opt-vip">
-                                        <input type="radio" name="ticket_tier" value="Experiência VIP - R$ 1.000">
+                                    <label class="ticket-toggle-option ticket-toggle-option--vip" id="toggle-opt-lote-2" data-start="2026-09-25T00:00:00" data-end="2026-09-30T23:59:59">
+                                        <input type="radio" name="ticket_tier" value="Segundo lote - R$ 750">
                                         <span class="ticket-toggle-content">
-                                            <strong class="text-gold">Experiência VIP</strong>
-                                            <span>R$ 1.000 • 8h às 17h</span>
+                                            <strong class="text-gold">Segundo lote</strong>
+                                            <span>R$ 750 • até 30/09</span>
+                                        </span>
+                                    </label>
+                                    <label class="ticket-toggle-option" id="toggle-opt-lote-3" data-start="2026-09-30T00:00:00" data-end="2026-10-06T23:59:59">
+                                        <input type="radio" name="ticket_tier" value="Terceiro lote - R$ 1.000">
+                                        <span class="ticket-toggle-content">
+                                            <strong>Terceiro lote</strong>
+                                            <span>R$ 1.000 • até o evento</span>
                                         </span>
                                     </label>
                                 </div>
@@ -907,7 +838,7 @@
 
                 <div class="qualification__break reveal">
                     <p class="qualification__not">Se você procura apenas motivação, este evento não é para você.</p>
-                    <p class="qualification__yes">Mas se entende que o resultado muda quando o dono muda suas decisões, seu lugar está aqui.</p>
+                    <p class="qualification__yes">Mas se entende que o resultado muda <span class="text-gold-gradient">quando o dono muda suas decisões,</span> seu lugar está aqui.</p>
                 </div>
             </div>
         </section>
@@ -956,24 +887,12 @@
 
                     <div class="faq-item reveal">
                         <button class="faq-question" aria-expanded="false" tabindex="0">
-                            <span>O que está incluso no ingresso de R$ 500?</span>
+                            <span>O que está incluso no ingresso?</span>
                             <span class="faq-icon" aria-hidden="true"></span>
                         </button>
                         <div class="faq-answer" role="region">
                             <div class="faq-answer__inner">
-                                <p>Programação principal, conteúdos, ferramentas práticas, podcast, aconselhamento e networking empresarial.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-item reveal">
-                        <button class="faq-question" aria-expanded="false" tabindex="0">
-                            <span>O que está incluso no ingresso VIP de R$ 1.000?</span>
-                            <span class="faq-icon" aria-hidden="true"></span>
-                        </button>
-                        <div class="faq-answer" role="region">
-                            <div class="faq-answer__inner">
-                                <p>Toda a programação principal mais as experiências Pit Stop, Kart Crazy, networking e coquetel de encerramento.</p>
+                                <p>Palestra de Lilian Carmo, palestra de Atila Abreu, podcast ao vivo com Lasaro do Carmo Jr. e Atila Abreu, aconselhamento empresarial em tempo real com Lasaro do Carmo Jr. e almoço executivo de networking.</p>
                             </div>
                         </div>
                     </div>
@@ -998,8 +917,7 @@
                 </h2>
 
                 <div class="final-cta__event reveal" data-delay="300">
-                    <span class="final-cta__estamos">ESTAMOS NA</span>
-                    <span class="final-cta__volta text-gold-gradient">ÚLTIMA VOLTA</span>
+                    <img src="id/final-cta-logo.png" alt="Estamos na Última Volta" class="final-cta__logo">
                 </div>
 
                 <a href="#ingressos" class="btn btn-primary btn-lg reveal" data-delay="400" data-track="final_cta">
@@ -1014,42 +932,24 @@
 
     <!-- ========== 18. FOOTER ========== -->
     <footer class="footer">
-        <div class="container footer__grid">
+        <div class="container footer__stack">
             <div class="footer__brand">
                 <a href="#hero" class="footer__logo-link" aria-label="Última Volta 2026">
                     <img src="id/logo%20sem%20fundo.png" alt="Última Volta — Imersão Empresarial" class="footer__logo-img">
                 </a>
-                <p class="footer__event-name">ESTAMOS NA ÚLTIMA VOLTA • 2026</p>
-                <p class="footer__event-date">06 de outubro de 2026</p>
-                <div class="footer__seal">
-                    <img src="id/logo%20reduzida.png" alt="Selo Oficial Última Volta" class="footer__seal-img">
-                    <span>Imersão Empresarial de Alta Performance</span>
+            </div>
+
+            <div class="footer__partners">
+                <span class="footer__partners-label">Realização</span>
+                <div class="footer__partners-logos">
+                    <img src="id/logo-caup.png" alt="CAUP" class="footer__partner-logo">
+                    <img src="id/logo-scuderia-bandeiras.png" alt="Scuderia Bandeiras" class="footer__partner-logo">
                 </div>
             </div>
 
-            <div class="footer__links">
-                <h4 class="footer__heading">Navegação</h4>
-                <ul>
-                    <li><a href="#evento">O Evento</a></li>
-                    <li><a href="#palestrantes">Palestrantes</a></li>
-                    <li><a href="#programacao">Programação</a></li>
-                    <li><a href="#experiencia">Experiências</a></li>
-                    <li><a href="#ingressos">Ingressos</a></li>
-                    <li><a href="#faq">Perguntas Frequentes</a></li>
-                </ul>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Última Volta. Todos os direitos reservados. Não há vitória sem decisão na hora certa.</p>
             </div>
-
-            <div class="footer__legal">
-                <h4 class="footer__heading">Institucional</h4>
-                <ul>
-                    <li><a href="#">Política de Privacidade</a></li>
-                    <li><a href="#">Termos de Participação</a></li>
-                    <li><a href="#">Contato & Suporte</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="container footer__bottom">
-            <p>&copy; 2026 Última Volta. Todos os direitos reservados. Não há vitória sem decisão na hora certa.</p>
         </div>
     </footer>
 
