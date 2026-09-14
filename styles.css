@@ -849,7 +849,7 @@ h2,
     margin-top: 6px;
     border-radius: 1px;
 }
-.solution__item-body h4 {
+.solution__item-body h3 {
     font-family: var(--font-heading);
     font-size: var(--text-lg);
     font-weight: 700;
