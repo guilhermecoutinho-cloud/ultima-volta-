@@ -8,7 +8,7 @@
 /* ---------- CONFIG ---------- */
 const CONFIG = {
     GA4_ID: '',           // Insert Google Analytics 4 Measurement ID
-    META_PIXEL_ID: '',    // Insert Meta Pixel ID
+    META_PIXEL_ID: '1672251787075106',
     CLARITY_ID: '',       // Insert Microsoft Clarity ID
     CRM_WEBHOOK_URL: 'https://webhook.unnica.com.br/functions/v1/flow-webhook-receive?token=whk_1pBnuF4leMt7DLBn2fhnJlNcFIb4BVbp',
 };
