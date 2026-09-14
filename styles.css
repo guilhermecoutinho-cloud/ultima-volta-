@@ -912,12 +912,11 @@ h1, h2, h3, h4, h5, h6 {
 .spk-slide {
     position: relative;
     flex: 0 0 calc(100vw - 80px); /* slide width = viewport − peek strip */
-    min-height: 580px;
+    min-height: 560px;
     background: var(--black-deep);
     display: flex;
     align-items: stretch;
     overflow: hidden;
-    /* Subtle right margin creates visible gap / peek into next slide */
     margin-right: 0;
 }
 
@@ -935,43 +934,40 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Atmosphere overlays ─────────────────────────────────────────────────── */
 .spk-slide__overlay { position: absolute; z-index: 2; pointer-events: none; }
 
-/* Left gradient: darkens the image zone near the speaker's body so text stays legible */
+/* Left vignette — subtle edge shadow, keeps cinematic mood on left */
 .spk-slide__overlay--left {
     top: 0; left: 0; bottom: 0;
-    width: 65%;
+    width: 25%;
     background: linear-gradient(to right,
-        rgba(5,5,5,0)    0%,
-        rgba(5,5,5,0.1)  40%,
-        rgba(5,5,5,0.55) 70%,
-        rgba(5,5,5,0.92) 100%
+        rgba(5,5,5,0.6) 0%,
+        rgba(5,5,5,0.0) 100%
     );
 }
 
-/* Right gradient: creates gentle fade so the next-slide peek blends softly */
+/* Right overlay — now handled entirely by .spk-slide__figure-shadow gradient */
+/* Keeping this rule with minimal opacity so it doesn't conflict */
 .spk-slide__overlay--right {
     top: 0; right: 0; bottom: 0;
-    width: 120px;
-    background: linear-gradient(to left,
-        rgba(5,5,5,0.95) 0%,
-        rgba(5,5,5,0.0)  100%
-    );
+    width: 0;
+    background: transparent;
 }
 
-/* Bottom gradient: grounds the slide, same as hero bottom-fade */
+/* Bottom gradient: grounds the slide */
 .spk-slide__overlay--bottom {
     bottom: 0; left: 0; right: 0;
-    height: 160px;
+    height: 100px;
     background: linear-gradient(to top,
-        var(--black-deep) 0%,
-        transparent       100%
+        rgba(5,5,5,0.9) 0%,
+        transparent     100%
     );
 }
 
-/* ── Speaker figure (image zone) ─────────────────────────────────────────── */
+/* ── Speaker figure — FULL BLEED (images are 1920×1080 landscape) ─────────── */
+/* The image fills the entire slide, overlays create the dark zone for text.   */
 .spk-slide__figure {
     position: absolute;
-    top: 0; left: 0; bottom: 0;
-    width: 55%;
+    inset: 0;
+    width: 100%;   /* full width — not just 55% */
     z-index: 1;
     overflow: hidden;
 }
@@ -980,32 +976,36 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
+    object-position: center 35%;   /* show upper-middle of the landscape frame */
     display: block;
-    filter: contrast(1.08) saturate(0.85) brightness(0.9);
+    filter: contrast(1.05) saturate(0.85) brightness(0.82);
     transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
 }
-/* Subtle scale on active slide (JS adds .spk-slide--active) */
 .spk-slide--active .spk-slide__img {
     transform: scale(1.03);
 }
 
-/* Lasaro: positioned a bit higher so face is visible */
-.spk-slide__img--lasaro  { object-position: top center; }
-.spk-slide__img--lilian  { object-position: top center; }
-.spk-slide__img--atila   { object-position: top center; }
+/* Per-speaker object-position fine-tuning for 1920×1080 frames */
+.spk-slide__img--lasaro { object-position: 30% 30%; }
+.spk-slide__img--lilian { object-position: 35% 25%; }
+.spk-slide__img--atila  { object-position: 30% 30%; }
 
-/* Soft inner shadow on the right edge of the figure to blend into text area */
+/* Figure shadow — heavy gradient from right → left, creates text zone on right */
 .spk-slide__figure-shadow {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right,
-        transparent          0%,
-        rgba(5,5,5,0.2)      50%,
-        rgba(5,5,5,0.85)     85%,
-        var(--black-deep)    100%
-    );
+    /* Two-stop: left vignette keeps mood, right gradient provides text backdrop */
+    background:
+        linear-gradient(to right,
+            rgba(5,5,5,0.45)  0%,
+            rgba(5,5,5,0.1)   30%,
+            rgba(5,5,5,0.05)  45%,
+            rgba(5,5,5,0.55)  62%,
+            rgba(5,5,5,0.92)  78%,
+            rgba(5,5,5,0.97)  100%
+        );
 }
+
 
 /* ── Content panel (right side) ──────────────────────────────────────────── */
 .spk-slide__body {
@@ -1145,27 +1145,33 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .spk-slide {
         flex: 0 0 calc(100vw - 32px);
-        min-height: auto;
+        min-height: 420px;          /* explicit height so absolute figure has room */
         flex-direction: column;
-        align-items: flex-start;
+        /* On mobile: figure stays absolute/full-bleed; body overlays on top */
+        align-items: flex-end;      /* push body to the bottom over the image */
     }
     .spk-slide__figure {
-        position: relative;
+        position: absolute;  /* stays full-bleed, image fills entire slide */
+        inset: 0;
         width: 100%;
-        height: 300px;
-        top: auto; left: auto; bottom: auto;
     }
     .spk-slide__img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center 25%;  /* show upper area of landscape frame on mobile */
     }
     .spk-slide__overlay--left { display: none; }
-    .spk-slide__overlay--right { width: 60px; }
+    .spk-slide__overlay--right { width: 0; background: transparent; }
     .spk-slide__body {
         width: 100%;
         margin-left: 0;
-        padding: var(--sp-8) var(--sp-6);
+        padding: var(--sp-8) var(--sp-6) var(--sp-10);
+        background: linear-gradient(to top,
+            rgba(5,5,5,0.97) 0%,
+            rgba(5,5,5,0.85) 70%,
+            rgba(5,5,5,0.0)  100%
+        );
         transform: translateY(12px);
         transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
     }
@@ -1197,7 +1203,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 1200px) {
     .spk-slide {
         flex: 0 0 calc(100vw - 100px);
-        min-height: 640px;
+        min-height: 620px;
     }
     .spk-slide__body {
         padding: var(--sp-20) var(--sp-16) var(--sp-20) var(--sp-8);
