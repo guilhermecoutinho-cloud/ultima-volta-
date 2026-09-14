@@ -929,14 +929,15 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Individual slide ────────────────────────────────────────────────────── */
 .spk-slide {
     position: relative;
-    flex: 0 0 calc(100vw - 60px); /* slide width — 60px reveals next slide subtly */
-    min-height: 620px;
+    flex: 0 0 calc(100vw - 60px);
+    min-height: max(800px, 80vh); /* Massive height for hero presence */
     background: var(--black-deep);
     display: flex;
     align-items: stretch;
     overflow: hidden;
     margin-right: 0;
 }
+
 
 /* ── Cinematic background layer (texture / vignette base) ─────────────────── */
 .spk-slide__bg {
@@ -1164,7 +1165,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .spk-slide {
         flex: 0 0 calc(100vw - 32px);
-        min-height: 420px;          /* explicit height so absolute figure has room */
+        min-height: 600px;          /* Increased height for hero presence on mobile */
         flex-direction: column;
         /* On mobile: figure stays absolute/full-bleed; body overlays on top */
         align-items: flex-end;      /* push body to the bottom over the image */
@@ -1222,10 +1223,10 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 1200px) {
     .spk-slide {
         flex: 0 0 calc(100vw - 100px);
-        min-height: 620px;
+        min-height: max(900px, 85vh);
     }
     .spk-slide__body {
-        padding: 240px var(--sp-16) var(--sp-20) var(--sp-8);
+        padding: 300px var(--sp-16) var(--sp-20) var(--sp-8);
     }
 }
 
