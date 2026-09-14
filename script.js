@@ -289,10 +289,13 @@ document.addEventListener('DOMContentLoaded', () => {
             data.origem = 'Landing Page Última Volta 2026';
 
             try {
-                // Example webhook post to CRM Unnica
+                // Webhook Unnica não envia header CORS: usar no-cors (resposta vira "opaque",
+                // sem status legível) e Content-Type text/plain pra virar "simple request"
+                // e não disparar o preflight que a Unnica não responde.
                 const response = await fetch(CONFIG.CRM_WEBHOOK_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain' },
                     body: JSON.stringify(data)
                 });
 
