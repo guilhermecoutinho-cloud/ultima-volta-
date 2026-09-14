@@ -439,15 +439,15 @@ h1, h2, h3, h4, h5, h6 {
     pointer-events: none;
 }
 
-/* Central container — max-width: 1400px, 40px padding */
+/* Central container — max-width: 1400px, responsive padding */
 .hero__container {
     position: relative;
     z-index: 3;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
     box-sizing: border-box;
 }
 
@@ -2475,10 +2475,7 @@ h1, h2, h3, h4, h5, h6 {
         background-position: center bottom; /* The faces are well placed, pin bottom to ensure we see them */
         justify-content: flex-start;
     }
-    .hero__container {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
+
     .hero__overlay {
         background: linear-gradient(180deg, 
             rgba(5,5,5,0.98) 0%,   
