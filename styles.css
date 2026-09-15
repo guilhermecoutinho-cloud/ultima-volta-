@@ -375,6 +375,25 @@ h2,
     pointer-events: none;
 }
 
+/* Do tablet pra cima o hero usa background-size:100% auto (ver comentário em .hero),
+   então sobra uma faixa vertical de tamanho variável (~0 a ~470px conforme a largura
+   da tela) entre o fim da foto e a base da seção. O fade padrão (100px) não cobre
+   esse intervalo inteiro e deixaria um corte seco em telas mais estreitas — por isso
+   aqui ele fica bem mais alto e com estágios intermediários, pra sumir gradualmente
+   antes da foto acabar em qualquer proporção, não só num corte de 100px fixo. */
+@media (min-width: 768px) {
+    .hero__bottom-fade {
+        height: 45%;
+        background: linear-gradient(to top,
+            var(--black-deep) 0%,
+            rgba(5,5,5,0.85) 25%,
+            rgba(5,5,5,0.45) 55%,
+            rgba(5,5,5,0.15) 80%,
+            transparent 100%
+        );
+    }
+}
+
 /* Central container — max-width: 1400px, responsive padding */
 .hero__container {
     position: relative;
