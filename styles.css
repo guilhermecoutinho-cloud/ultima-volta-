@@ -330,8 +330,13 @@ h2,
     min-height: 900px;
     background-color: var(--black-deep);
     background-image: url('hero/hero-desktop.webp');
-    background-size: cover;
-    background-position: right center; /* Focus on the right side for the speakers */
+    /* Largura sempre 100%: nunca corta as laterais, então a foto dos palestrantes
+       fica numa % fixa da tela em qualquer largura (com "cover" + "right center"
+       o corte lateral variava com a proporção da tela e empurrava o rosto da Lilian
+       pra trás do texto em telas mais estreitas). Sobra vertical vira letterbox,
+       escondida pelo .hero__bottom-fade e pela cor de fundo escura. */
+    background-size: 100% auto;
+    background-position: center top;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
@@ -2406,6 +2411,7 @@ h2,
         padding-top: var(--sp-8);
         padding-bottom: var(--sp-16);
         background-image: url('hero/hero-mobile.webp');
+        background-size: cover;
         background-position: center bottom; /* Mantém a bandeira quadriculada visível no rodapé */
         justify-content: flex-start;
     }
