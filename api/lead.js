@@ -26,7 +26,16 @@ module.exports = async function handler(req, res) {
     const produto = match ? match[1].trim() : tier;
     const valor = match ? Number(match[2].replace(/\./g, '').replace(',', '.')) : 0;
 
-    const payload = { ...data, produto, valor };
+    // O bloco "Criar lead" da Unnica usa {{nome}} e {{telefone}} (variáveis em
+    // português), não {{name}}/{{phone}} — por isso nome/telefone chegavam vazios
+    // mesmo com o JSON certo (e-mail só funcionava por coincidência de nome).
+    const payload = {
+        ...data,
+        produto,
+        valor,
+        nome: data.name,
+        telefone: data.phone,
+    };
 
     try {
         const upstream = await fetch(CRM_WEBHOOK_URL, {
