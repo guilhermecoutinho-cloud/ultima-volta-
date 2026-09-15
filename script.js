@@ -10,7 +10,7 @@ const CONFIG = {
     GA4_ID: '',           // Insert Google Analytics 4 Measurement ID
     META_PIXEL_ID: '1672251787075106',
     CLARITY_ID: '',       // Insert Microsoft Clarity ID
-    CRM_WEBHOOK_URL: 'https://webhook.unnica.com.br/functions/v1/flow-webhook-receive?token=whk_1pBnuF4leMt7DLBn2fhnJlNcFIb4BVbp',
+    LEAD_ENDPOINT: '/api/lead', // Proxy serverless (api/lead.js) que repassa pro webhook da Unnica
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -289,17 +289,17 @@ document.addEventListener('DOMContentLoaded', () => {
             data.origem = 'Landing Page Última Volta 2026';
 
             try {
-                // Webhook Unnica não envia header CORS: usar no-cors (resposta vira "opaque",
-                // sem status legível) e Content-Type text/plain pra virar "simple request"
-                // e não disparar o preflight que a Unnica não responde.
-                const response = await fetch(CONFIG.CRM_WEBHOOK_URL, {
+                // Manda pro proxy serverless (mesmo domínio, sem CORS), que repassa
+                // pro webhook da Unnica com application/json de verdade. Antes ia
+                // direto pro webhook com no-cors/text-plain: sem JSON estruturado a
+                // Unnica não mapeava nome/produto/valor direito.
+                const response = await fetch(CONFIG.LEAD_ENDPOINT, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain' },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
 
-                if (response.ok || response.type === 'opaque') {
+                if (response.ok) {
                     // Success!
                     leadForm.classList.remove('is-loading');
                     leadForm.classList.add('is-success');
