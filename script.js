@@ -196,62 +196,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ===================================================================
-       8.4. DISPONIBILIDADE DOS LOTES POR DATA
-       Cada lote (.lot-card no grid de preços, .ticket-toggle-option no
-       formulário) carrega data-start/data-end. Comparamos com a data do
-       visitante e bloqueamos visualmente o que ainda não abriu ou já fechou.
-       =================================================================== */
-    const now = new Date();
-    let activeRadio = null;
-
-    function lotState(el) {
-        const start = new Date(el.dataset.start);
-        const end = new Date(el.dataset.end);
-        if (now < start) return 'locked';
-        if (now > end) return 'expired';
-        return 'active';
-    }
-
-    document.querySelectorAll('.lot-card[data-start]').forEach(card => {
-        const state = lotState(card);
-        const btn = card.querySelector('.lot-card__btn');
-        if (state === 'active') return;
-
-        card.classList.add(`lot-card--${state}`);
-        if (btn) {
-            btn.dataset.originalText = btn.textContent.trim();
-            btn.textContent = state === 'locked'
-                ? `DISPONÍVEL EM ${new Date(card.dataset.start).toLocaleDateString('pt-BR')}`
-                : 'LOTE ENCERRADO';
-            btn.setAttribute('aria-disabled', 'true');
-            btn.setAttribute('tabindex', '-1');
-        }
-    });
-
-    document.querySelectorAll('.ticket-toggle-option[data-start]').forEach(opt => {
-        const state = lotState(opt);
-        const input = opt.querySelector('input[type="radio"]');
-        if (state === 'active') {
-            if (!activeRadio) activeRadio = input;
-            return;
-        }
-        opt.classList.add(`ticket-toggle-option--${state}`);
-        if (input) input.disabled = true;
-    });
-
-    // Nenhum lote na janela (ex.: todos encerrados) → cai no primeiro rádio para o form não submeter vazio
-    (activeRadio || document.querySelector('input[name="ticket_tier"]')).checked = true;
-
-    /* ===================================================================
        8.5. TICKET SELECTION & SCROLL TO FORM
        =================================================================== */
-    document.querySelectorAll('[data-ticket]:not([aria-disabled="true"])').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            // data-ticket="lote-1" → primeiro rádio, "lote-2" → segundo, etc.
-            const index = Number(btn.dataset.ticket.split('-')[1]) - 1;
-            const radios = document.querySelectorAll('input[name="ticket_tier"]');
-            const targetRadio = radios[index];
-
+    document.querySelectorAll('[data-ticket]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            // data-ticket="programacao" | "completo" → rádio com o mesmo data-ticket-id
+            const targetRadio = document.querySelector(`input[name="ticket_tier"][data-ticket-id="${btn.dataset.ticket}"]`);
 
             if (targetRadio) {
                 targetRadio.checked = true;
