@@ -255,6 +255,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     leadForm.classList.add('is-success');
                     
                     window.trackEvent('lead_generated', { form: 'ultima_volta' });
+
+                    // Segue pro Sympla pagar. O atraso deixa o Pixel enviar o evento
+                    // antes de a página ser descarregada e mostra a mensagem de sucesso.
+                    const paymentLink = document.getElementById('payment-link');
+                    if (paymentLink) {
+                        setTimeout(() => { window.location.href = paymentLink.href; }, 1200);
+                    }
                 } else {
                     throw new Error('Network response was not ok');
                 }
