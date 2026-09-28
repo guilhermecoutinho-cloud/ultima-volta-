@@ -196,19 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ===================================================================
-       8.5. TICKET SELECTION & SCROLL TO FORM
+       8.5. SCROLL TO FORM
        =================================================================== */
-    document.querySelectorAll('[data-ticket]').forEach(btn => {
+    document.querySelectorAll('a[href="#formulario-inscricao"]').forEach(btn => {
         btn.addEventListener('click', () => {
-            // data-ticket="programacao" | "completo" → rádio com o mesmo data-ticket-id
-            const targetRadio = document.querySelector(`input[name="ticket_tier"][data-ticket-id="${btn.dataset.ticket}"]`);
-
-            if (targetRadio) {
-                targetRadio.checked = true;
-                // Dispatch change event to update any visual radio styles
-                targetRadio.dispatchEvent(new Event('change', { bubbles: true }));
-            }
-
             // After smooth scroll finishes, focus the name field
             setTimeout(() => {
                 const nameInput = document.getElementById('form-name');
@@ -256,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     window.trackEvent('lead_generated', { form: 'ultima_volta' });
 
-                    // Segue pro Sympla pagar. O atraso deixa o Pixel enviar o evento
+                    // Segue pro link de pagamento. O atraso deixa o Pixel enviar o evento
                     // antes de a página ser descarregada e mostra a mensagem de sucesso.
                     const paymentLink = document.getElementById('payment-link');
                     if (paymentLink) {

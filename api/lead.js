@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
 
     const data = req.body && typeof req.body === 'object' ? req.body : {};
 
-    // "Experiência Completa - R$ 1.000" -> produto: "Experiência Completa", valor: 1000
+    // "Programação Principal - R$ 500" -> produto: "Programação Principal", valor: 500
     const tier = typeof data.ticket_tier === 'string' ? data.ticket_tier : '';
     const match = tier.match(/^(.*?)\s*-\s*R\$\s*([\d.,]+)/);
     const produto = match ? match[1].trim() : tier;
